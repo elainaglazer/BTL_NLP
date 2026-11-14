@@ -7,6 +7,18 @@ class CourseGrammarEngine:
     def __init__(self, grammar_path):
         self.rules = defaultdict(list)
         self.start_symbol = "S"
+        # Từ điển chuẩn hóa thực thể (Entity Normalization)
+        self.entity_synonyms = {
+            "btl": "BÀI TẬP LỚN",
+            "project": "BÀI TẬP LỚN",
+            "bài tập lớn": "BÀI TẬP LỚN",
+            "môn nlp": "CO3085",
+            "môn xử lý ngôn ngữ tự nhiên": "CO3085",
+            "co3085": "CO3085",
+            "công cụ ai": "AI_TOOLS",
+            "chatgpt": "AI_TOOLS",
+            "llm": "AI_TOOLS"
+        }
         self.load_grammar(grammar_path)
 
     def load_grammar(self, path):
@@ -17,14 +29,12 @@ class CourseGrammarEngine:
                     continue
                 lhs, rhs = line.split('->')
                 lhs = lhs.strip()
-                productions = rhs.split('|')
-                for prod in productions:
+                for prod in rhs.split('|'):
                     tokens = []
-                    # Tách các token non-terminal và terminal ("...")
                     for part in prod.strip().split():
                         if part.startswith('"') and part.endswith('"'):
                             val = part[1:-1]
-                            if val != "":  # Bỏ qua chuỗi rỗng epsilon
+                            if val != "":
                                 tokens.append(('T', val))
                         else:
                             tokens.append(('NT', part))
@@ -42,9 +52,6 @@ class CourseGrammarEngine:
                         rhs_strs.append(" ".join([f'"{val}"' if typ == 'T' else val for typ, val in prod]))
                 f.write(f"{lhs} -> {' | '.join(rhs_strs)}\n")
 
-    # ---------------------------------------------------------
-    # 1. GIẢI THUẬT SINH CÂU (Tối đa 10.000 câu)[cite: 3]
-    # ---------------------------------------------------------
     def _generate_one(self, symbol):
         if symbol not in self.rules:
             return [symbol]
@@ -65,7 +72,6 @@ class CourseGrammarEngine:
 
         while len(samples) < max_samples and attempts < max_attempts:
             tokens = self._generate_one(self.start_symbol)
-            # Ghép từ và chuẩn hóa dấu hỏi chấm
             text = " ".join(tokens).replace(" ?", "?")
             if text:
                 text = text[0].upper() + text[1:]
@@ -77,20 +83,14 @@ class CourseGrammarEngine:
                 f.write(s + "\n")
         print(f"[INFO] Đã sinh {len(samples)} câu hợp lệ vào {output_path}")
 
-    # ---------------------------------------------------------
-    # 2. BỘ PHÂN TÍCH CÚ PHÁP (PARSER)[cite: 3]
-    # ---------------------------------------------------------
     def tokenize(self, sentence):
         sentence = sentence.lower().strip()
-        # Tách dấu ? thành token riêng nếu dính liền chữ
         sentence = re.sub(r'(\?)', r' \1 ', sentence)
         return sentence.split()
 
     def _parse_symbol(self, symbol, tokens, pos):
-        """Trả về list các tuple: (next_pos, tree_string, extracted_entities)"""
         results = []
         for prod in self.rules.get(symbol, []):
-            # Bắt đầu khớp từng phần tử trong một vế phải (production)
             states = [(pos, [], {})]
             for typ, val in prod:
                 next_states = []
@@ -102,10 +102,10 @@ class CourseGrammarEngine:
                         sub_results = self._parse_symbol(val, tokens, curr_pos)
                         for next_p, sub_tree, sub_ents in sub_results:
                             merged_ents = {**curr_ents, **sub_ents}
-                            # Lưu các cụm danh từ làm Entity
                             if val.endswith("_NP"):
                                 raw_phrase = re.sub(r'\([A-Z_]+\s+|\)', '', sub_tree).strip()
-                                merged_ents[val] = raw_phrase
+                                normalized = self.entity_synonyms.get(raw_phrase, raw_phrase.upper())
+                                merged_ents[val] = normalized
                             next_states.append((next_p, curr_trees + [sub_tree], merged_ents))
                 states = next_states
 
@@ -114,15 +114,26 @@ class CourseGrammarEngine:
                 results.append((final_pos, tree_str, ents))
         return results
 
+    def build_semantic_repr(self, intent, entities):
+        """Tạo biểu diễn ngữ nghĩa dạng logic: INTENT(key=value)"""
+        if not entities:
+            return f"{intent}()"
+        args = ", ".join([f"{k.replace('_NP', '').lower()}={v}" for k, v in entities.items()])
+        return f"{intent}({args})"
+
     def parse(self, sentence):
         tokens = self.tokenize(sentence)
         if not tokens:
-            return "()", "UNKNOWN", {}
+            return {
+                "tree": "()",
+                "intent": "UNKNOWN",
+                "entities": {},
+                "semantic": "UNKNOWN()"
+            }
 
         matches = self._parse_symbol(self.start_symbol, tokens, 0)
         for next_pos, tree_str, entities in matches:
             if next_pos == len(tokens):
-                # Trích xuất Intent từ nhánh con đầu tiên của S
                 intent_match = re.search(r'\(S \((Q_[A-Z]+)', tree_str)
                 intent_map = {
                     "Q_COURSE": "GET_COURSE_INFO",
@@ -136,9 +147,20 @@ class CourseGrammarEngine:
                 }
                 raw_q = intent_match.group(1) if intent_match else "UNKNOWN"
                 intent = intent_map.get(raw_q, "UNKNOWN")
-                return tree_str, intent, entities
+                semantic = self.build_semantic_repr(intent, entities)
+                return {
+                    "tree": tree_str,
+                    "intent": intent,
+                    "entities": entities,
+                    "semantic": semantic
+                }
 
-        return "()", "OUT_OF_DOMAIN", {}
+        return {
+            "tree": "()",
+            "intent": "OUT_OF_DOMAIN",
+            "entities": {},
+            "semantic": "OUT_OF_DOMAIN()"
+        }
 
     def process_input_file(self, input_path, output_path):
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -148,23 +170,14 @@ class CourseGrammarEngine:
                 sent = line.strip()
                 if not sent:
                     continue
-                tree, intent, entities = self.parse(sent)
-                # Xuất đúng định dạng cây cú pháp hoặc () theo đề bài[cite: 3]
-                fout.write(f"{tree}\n")
+                res = self.parse(sent)
+                fout.write(f"{res['tree']}\n")
         print(f"[INFO] Đã xuất kết quả phân tích cú pháp vào {output_path}")
 
-# =========================================================
-# CHẠY THỬ NGHIỆM ĐỘC LẬP CHO PHẦN I
-# =========================================================
+
 if __name__ == "__main__":
     engine = CourseGrammarEngine("data/grammar.cfg")
-    
-    # 1. Xuất file grammar.txt[cite: 3]
     engine.export_grammar("output/grammar.txt")
-    
-    # 2. Sinh tối đa 10.000 câu mẫu[cite: 3]
     engine.generate_samples("output/samples.txt", max_samples=10000)
-    
-    # 3. Phân tích cú pháp file input/sentences.txt[cite: 3]
     if os.path.exists("input/sentences.txt"):
         engine.process_input_file("input/sentences.txt", "output/parse-results.txt")

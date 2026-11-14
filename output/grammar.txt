@@ -1,0 +1,19 @@
+S -> Q_COURSE | Q_TOPIC | Q_SCHEDULE | Q_ASSIGN | Q_DEADLINE | Q_RESOURCE | Q_RULE | Q_CONTEXT
+Q_COURSE -> COURSE_NP "có" "bao" "nhiêu" "tín" "chỉ" OPT_QMARK | "số" "tín" "chỉ" "của" COURSE_NP "là" "bao" "nhiêu" OPT_QMARK | "thông" "tin" "chung" "của" COURSE_NP OPT_QMARK | "mã" "môn" "học" "của" COURSE_NP "là" "gì" OPT_QMARK | "giảng" "viên" "phụ" "trách" COURSE_NP "là" "ai" OPT_QMARK | "mục" "tiêu" "của" COURSE_NP "là" "gì" OPT_QMARK
+Q_TOPIC -> TIME_NP "học" "những" TOPIC_WORD "gì" OPT_QMARK | TIME_NP "học" "về" TOPIC_WORD "gì" OPT_QMARK | "nội" "dung" "học" "của" TIME_NP "là" "gì" OPT_QMARK | TOPIC_NP "nằm" "ở" "tuần" "nào" OPT_QMARK | "tuần" "nào" "học" "về" TOPIC_NP OPT_QMARK | "nội" "dung" "của" TOPIC_NP "là" "gì" OPT_QMARK | CHAPTER_NP "nói" "về" "chủ" "đề" "gì" OPT_QMARK
+Q_SCHEDULE -> "lịch" "học" "của" COURSE_NP "như" "thế" "nào" OPT_QMARK | "kế" "hoạch" "giảng" "dạy" COURSE_NP "ra" "sao" OPT_QMARK | "khi" "nào" "bắt" "đầu" "học" TOPIC_NP OPT_QMARK | TIME_NP "có" "lịch" "học" "không" OPT_QMARK
+Q_ASSIGN -> ASSIGN_NP "có" "những" "yêu" "cầu" "gì" OPT_QMARK | "yêu" "cầu" "của" ASSIGN_NP "là" "gì" OPT_QMARK | "tôi" "cần" "hoàn" "thành" "những" "bài" "tập" "nào" OPT_QMARK | "nội" "dung" "của" ASSIGN_NP "là" "gì" OPT_QMARK | "nhóm" ASSIGN_NP "gồm" "bao" "nhiêu" "người" OPT_QMARK | "cách" "nộp" ASSIGN_NP "như" "thế" "nào" OPT_QMARK
+Q_DEADLINE -> "deadline" "của" ASSIGN_NP "là" "khi" "nào" OPT_QMARK | "deadline" ASSIGN_NP "là" "ngày" "nào" OPT_QMARK | "hạn" "nộp" ASSIGN_NP "là" "khi" "nào" OPT_QMARK | "khi" "nào" "phải" "nộp" ASSIGN_NP OPT_QMARK
+Q_RESOURCE -> "tài" "liệu" "nào" "nói" "về" TOPIC_NP OPT_QMARK | "giáo" "trình" "của" COURSE_NP "là" "gì" OPT_QMARK | "tài" "liệu" "tham" "khảo" "của" COURSE_NP "gồm" "những" "gì" OPT_QMARK | "tìm" "tài" "liệu" "về" TOPIC_NP "ở" "đâu" OPT_QMARK
+Q_RULE -> ASSIGN_NP "có" "được" "sử" "dụng" TOOL_NP "không" OPT_QMARK | "có" "được" "dùng" TOOL_NP "trong" ASSIGN_NP "không" OPT_QMARK | "quy" "định" "về" RULE_TOPIC "như" "thế" "nào" OPT_QMARK | "nộp" "trễ" ASSIGN_NP "có" "bị" "trừ" "điểm" "không" OPT_QMARK
+Q_CONTEXT -> "tài" "liệu" "của" REF_NP "ở" "đâu" OPT_QMARK | "deadline" "của" REF_NP "là" "khi" "nào" OPT_QMARK | "chi" "tiết" "về" REF_NP "như" "thế" "nào" OPT_QMARK | "nó" "có" "yêu" "cầu" "gì" OPT_QMARK
+COURSE_NP -> "môn" "nlp" | "môn" "xử" "lý" "ngôn" "ngữ" "tự" "nhiên" | "co3085" | "môn" "học" "này"
+TIME_NP -> "tuần" "1" | "tuần" "2" | "tuần" "3" | "tuần" "4" | "tuần" "5" | "tuần" "6" | "tuần" "7" | "tuần" "8" | "tuần" "9" | "tuần" "10" | "tuần" "11" | "tuần" "12" | "tuần" "13" | "tuần" "14" | "tuần" "15"
+CHAPTER_NP -> "chương" "1" | "chương" "2" | "chương" "3" | "chương" "4" | "chương" "5" | "chương" "6" | "chương" "7" | "chương" "8" | "chương" "9" | "chương" "10" | "chương" "11" | "chương" "12"
+TOPIC_WORD -> "nội" "dung" | "chủ" "đề" | "bài" "học" | "kiến" "thức"
+TOPIC_NP -> "cfg" | "parsing" | "cfg" "và" "parsing" | "ngữ" "nghĩa" | "rag" | "llm" | "mô" "hình" "ngôn" "ngữ" | "pos" "tagging" | "ner" | "word" "embedding" | "transformer"
+ASSIGN_NP -> "bài" "tập" "lớn" | "btl" | "project" | "bài" "tập" "1" | "bài" "tập" "2" | "bài" "tập"
+TOOL_NP -> "công" "cụ" "ai" | "ai" | "chatgpt" | "llm"
+RULE_TOPIC -> "điểm" "danh" | "thi" "cuối" "kỳ" | "trung" "thực" "học" "thuật" | "nộp" "bài" | "docker"
+REF_NP -> "phần" "này" | "nội" "dung" "đó" | "bài" "này" | "chương" "đó"
+OPT_QMARK -> "?" | ""
