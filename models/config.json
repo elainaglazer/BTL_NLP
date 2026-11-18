@@ -1,0 +1,11 @@
+{
+  "grammar": "data/grammar.cfg",
+  "seed": 42,
+  "max_samples": 10000,
+  "top_k": 3,
+  "components": {
+    "context": null,
+    "retriever": null,
+    "generator": null
+  }
+}

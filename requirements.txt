@@ -1,0 +1,2 @@
+# Python >= 3.9. TV4 week 1 uses only the standard library.
+# TV2/TV3 add their dependencies here when integrating their modules.
