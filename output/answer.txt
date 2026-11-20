@@ -1,30 +1,96 @@
-Câu hỏi: Môn NLP có bao nhiêu tín chỉ
-Trả lời: N/A
-
-Câu hỏi: Tuần 5 học những nội dung gì
-Trả lời: N/A
-
-Câu hỏi: Phần CFG và Parsing nằm ở tuần nào
-Trả lời: N/A
-
-Câu hỏi: Bài tập lớn có những yêu cầu gì
-Trả lời: N/A
-
-Câu hỏi: Deadline của bài tập lớn là khi nào
-Trả lời: N/A
-
-Câu hỏi: Tài liệu nào nói về CFG
-Trả lời: N/A
-
-Câu hỏi: Bài tập lớn có được sử dụng công cụ AI không
-Trả lời: N/A
-
-Câu hỏi: Tôi cần hoàn thành những bài tập nào
-Trả lời: N/A
-
-Câu hỏi: Tài liệu của phần này ở đâu
-Trả lời: N/A
-
-Câu hỏi: Thời tiết hôm nay ở Sài Gòn thế nào
-Trả lời: N/A
-
+==============================================================================
+[1] CÂU HỎI : Môn NLP có bao nhiêu tín chỉ?
+    SEMANTIC: GET_COURSE_INFO(course=CO3085)
+    NGUỒN   : course_info.txt#1, faq.txt#1
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : course_id — credits: 3 | FAQ Q1: Môn NLP có bao nhiêu tín chỉ? — Môn Xử lý Ngôn ngữ Tự nhiên (CO3085) có 3 tín chỉ. [Nguồn: course_info.txt#1, faq.txt#1]
+==============================================================================
+[2] CÂU HỎI : Môn học gồm những phần nào?
+    SEMANTIC: GET_COURSE_INFO(text="Môn học gồm những phần nào?")  # keyword fallback
+    NGUỒN   : course_info.txt#4
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : main_parts — main_parts: Part I - Syntactic Processing; Part II - Semantic Interpretation; Part III - Context and World Knowledge [Nguồn: course_info.txt#4]
+==============================================================================
+[3] CÂU HỎI : Tuần 3 học gì?
+    SEMANTIC: GET_SCHEDULE(text="Tuần 3 học gì?")  # keyword fallback
+    NGUỒN   : schedule.txt#4
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : WEEK 03 — topics: context-free grammar; grammar and sentence structure; top-down parsing; bottom-up chart parsing; top-down chart parsing; probabilistic context-free grammar; dependency grammar; Stanford dependencies [Nguồn: schedule.txt#4]
+==============================================================================
+[4] CÂU HỎI : Chương 4 học vào tuần nào?
+    SEMANTIC: GET_SCHEDULE(text="Chương 4 học vào tuần nào?")  # keyword fallback
+    NGUỒN   : schedule.txt#5, schedule.txt#6
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : WEEK 04 — topics: feature systems; augmented grammars; feature systems for English; lexicon; grammar using feature systems; parsing with features | WEEK 05 — chapter: Chapter 4 [Nguồn: schedule.txt#5, schedule.txt#6]
+==============================================================================
+[5] CÂU HỎI : Chương nào nói về CFG?
+    SEMANTIC: GET_TOPIC(text="Chương nào nói về CFG?")  # keyword fallback
+    NGUỒN   : topics.txt#3
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : CHAPTER 3: GRAMMAR AND PARSING — keywords: CFG, parsing, PCFG, dependency grammar; summary: The chapter introduces context-free grammar, sentence structure and; parsing methods. It also introduces probabilistic CFG and dependency; grammar. [Nguồn: topics.txt#3]
+==============================================================================
+[6] CÂU HỎI : L.O.2.5 là gì?
+    SEMANTIC: GET_LO(text="L.O.2.5 là gì?")  # keyword fallback
+    NGUỒN   : faq.txt#10, course_info.txt#6
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : FAQ Q10: L.O.2.5 liên quan đến nội dung gì? — L.O.2.5 liên quan đến lý thuyết xác suất và việc giải quyết nhập; nhằng từ ở mức câu. | detailed_learning_outcomes — detailed_learning_outcomes: LO1.1 - Hiểu cấu trúc hệ thống NLP, ứng dụng và cách đánh giá hệ thống hiểu ngôn ngữ tự nhiên. LO2.1 - Kiến thức cơ sở về cú pháp tiếng Anh. LO2.2 - Kiến thức cơ bản về văn phạm và phân tích cú pháp. LO2.3 - Kiến thức về nét và văn phạm gia tố. LO2.4 - Kiến thức tạo văn phạm cho ngôn ngữ tự nhiên và phương pháp parsing. LO2.5 - Kiến thức xác suất để giải quyết nhập nhằng từ ở mức câu. LO3.1 - Kiến thức về ngôn ngữ dạng luận lý và tạo dạng luận lý đơn giản. LO3.2 - Tạo tự động diễn dịch ngữ nghĩa cho câu tự nhiên. LO3.3 - Giải quyết nhập nhằng ngữ nghĩa dựa trên tri thức và thống kê. LO3.4 - Diễn dịch ngữ nghĩa bằng quan hệ văn phạm và văn phạm ngữ nghĩa. LO4.1 - Biểu diễn tri thức, suy diễn và xây dựng hệ thống hỏi đáp đơn giản. LO4.2 - Ngữ cảnh diễn ngôn cục bộ và sự tham chiếu. [Nguồn: faq.txt#10, course_info.txt#6]
+==============================================================================
+[7] CÂU HỎI : Bài tập lớn yêu cầu xây dựng những gì?
+    SEMANTIC: GET_ASSIGNMENT(text="Bài tập lớn yêu cầu xây dựng những gì?")  # keyword fallback
+    NGUỒN   : assignments.txt#2, assignments.txt#5
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : PART I - Grammar and Parser — requirements: xây dựng grammar cho miền Course Assistant; sinh câu hợp lệ từ grammar; xây dựng parser; xuất parse tree; xử lý câu không hợp lệ | PART IV - Evaluation — requirements: tạo test set; đo accuracy hoặc metric phù hợp; phân tích lỗi; trình bày các trường hợp hệ thống không trả lời đúng [Nguồn: assignments.txt#2, assignments.txt#5]
+==============================================================================
+[8] CÂU HỎI : Deadline bài tập lớn là khi nào?
+    SEMANTIC: GET_DEADLINE(text="Deadline bài tập lớn là khi nào?")  # keyword fallback
+    NGUỒN   : schedule.txt#9, schedule.txt#13, schedule.txt#16
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : WEEK 08 — milestone: BTL checkpoint 1 - grammar and parser | WEEK 12 — milestone: BTL checkpoint 2 - semantic interpretation and QA | WEEK 15 — milestone: BTL final submission and demo [Nguồn: schedule.txt#9, schedule.txt#13, schedule.txt#16]
+==============================================================================
+[9] CÂU HỎI : Có được dùng LLM/RAG không?
+    SEMANTIC: GET_RULE(text="Có được dùng LLM/RAG không?")  # keyword fallback
+    NGUỒN   : regulations.txt#8
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : LLM_RAG — LLM_RAG: LLM/RAG nếu được sử dụng chỉ nên đóng vai trò mở rộng. Sinh viên phải; mô tả rõ mô hình, dữ liệu, retrieval và cách đánh giá. [Nguồn: regulations.txt#8]
+==============================================================================
+[10] CÂU HỎI : Midterm bao nhiêu phút?
+    SEMANTIC: GET_COURSE_INFO(text="Midterm bao nhiêu phút?")  # keyword fallback
+    NGUỒN   : faq.txt#14, course_info.txt#8
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : FAQ Q14: Midterm kéo dài bao lâu? — Theo đề cương, midterm có thời lượng 60 phút. | exam_format — midterm: open-book, written, 60 minutes [Nguồn: faq.txt#14, course_info.txt#8]
+==============================================================================
+[11] CÂU HỎI : Tài liệu tham khảo về statistical NLP là gì?
+    SEMANTIC: GET_RESOURCE(text="Tài liệu tham khảo về statistical NLP là gì?")  # keyword fallback
+    NGUỒN   : resources.txt#4
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : REFERENCE 1 — title: Foundation of Statistical Natural Language Processing; usage: statistical NLP [Nguồn: resources.txt#4]
+==============================================================================
+[12] CÂU HỎI : Chương 11 có liên quan đến hỏi đáp không?
+    SEMANTIC: GET_TOPIC(text="Chương 11 có liên quan đến hỏi đáp không?")  # keyword fallback
+    NGUỒN   : topics.txt#11
+    TRẠNG THÁI: ANSWERED (mode=extractive)
+    TRẢ LỜI : CHAPTER 11: KNOWLEDGE REPRESENTATION AND REASONING — keywords: knowledge representation, reasoning, frame, QA; summary: The chapter introduces knowledge representation and reasoning and applies them to simple natural-language question answering. [Nguồn: topics.txt#11]
+==============================================================================
+[13] CÂU HỎI : Giảng viên dạy môn NLP là ai?
+    SEMANTIC: GET_INSTRUCTOR(text="Giảng viên dạy môn NLP là ai?")  # keyword fallback
+    NGUỒN   : -
+    TRẠNG THÁI: NOT_FOUND (mode=extractive)
+    TRẢ LỜI : Xin lỗi, tôi không tìm thấy thông tin này trong dữ liệu của môn học.
+==============================================================================
+[14] CÂU HỎI : Chương 13 nói về gì?
+    SEMANTIC: GET_TOPIC(text="Chương 13 nói về gì?")  # keyword fallback
+    NGUỒN   : -
+    TRẠNG THÁI: NOT_FOUND (mode=gate (không có chương 13))
+    TRẢ LỜI : Xin lỗi, tôi không tìm thấy thông tin này trong dữ liệu của môn học.
+==============================================================================
+[15] CÂU HỎI : Ai là tổng thống của Pháp?
+    SEMANTIC: OUT_OF_DOMAIN()
+    NGUỒN   : -
+    TRẠNG THÁI: OUT_OF_DOMAIN (mode=gate)
+    TRẢ LỜI : Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+==============================================================================
+[16] CÂU HỎI : Hãy giải bài tập xác suất này giúp tôi.
+    SEMANTIC: OUT_OF_DOMAIN()
+    NGUỒN   : -
+    TRẠNG THÁI: OUT_OF_DOMAIN (mode=gate)
+    TRẢ LỜI : Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).

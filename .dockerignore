@@ -2,13 +2,13 @@
 .github
 **/__pycache__
 **/*.pyc
+.env
 .venv
 venv
-.env
-.env.*
 dist
 docs
+scripts
 output
 *.zip
-*.pdf
 *.mp4
+*.pdf

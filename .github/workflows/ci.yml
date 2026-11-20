@@ -1,11 +1,16 @@
-name: TV4 week 1 integration
-on: [push, pull_request, workflow_dispatch]
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
 jobs:
   python:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: ['3.9', '3.11', '3.12']
+        python: ["3.9", "3.11", "3.12"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -13,17 +18,37 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: pip install -r requirements.txt
       - run: python -m unittest discover -s tests -v
-      - run: OUTPUT_DIR="$RUNNER_TEMP/week1-output" python -m src.main run-all
+      - run: python -m src.main run-all
+
   docker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: docker build -t nlp-course-assistant .
-      - name: Verify grading mounts and explicit pending status
+      - name: Build image (chạy unit test trong lúc build)
+        run: docker build -t nlp-course-assistant .
+      - name: Chạy giống lúc chấm (/nlp/input, /nlp/output)
         run: |
-          mkdir -p out
+          mkdir -p out empty_in
           docker run --rm -v "$PWD/input:/nlp/input" -v "$PWD/out:/nlp/output" nlp-course-assistant
-          test -s out/grammar.txt
-          test -s out/samples.txt
-          test -s out/parse-results.txt
-          grep -q PENDING_INTEGRATION out/integration-trace.jsonl
+          for f in grammar.txt samples.txt parse-results.txt semantic.txt intent-entity.txt \
+                   retrieval.txt answer.txt dialogue.txt evaluation.txt; do
+            test -s "out/$f" || { echo "THIẾU out/$f"; exit 1; }
+          done
+          head -n 12 out/evaluation.txt
+      - name: Input trống -> dùng input mặc định trong image
+        run: |
+          mkdir -p out2
+          docker run --rm -v "$PWD/empty_in:/nlp/input" -v "$PWD/out2:/nlp/output" nlp-course-assistant
+          test -s out2/evaluation.txt
+      - name: Lệnh ask / demo
+        run: |
+          docker run --rm nlp-course-assistant ask "Tuần 3 học gì?"
+          docker run --rm nlp-course-assistant demo
+      - name: Đóng gói thử file nộp
+        run: python3 scripts/package.py --ids 0000001 0000002 0000003 0000004
+      - uses: actions/upload-artifact@v4
+        with:
+          name: submission-and-output
+          path: |
+            dist/*.zip
+            out/

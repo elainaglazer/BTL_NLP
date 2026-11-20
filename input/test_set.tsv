@@ -1,0 +1,74 @@
+id	group	dialogue	question	expected_intent	expected_status	expected_keywords	expected_source
+#	Test set dựng từ dữ liệu chính thức (sample_queries.txt Q001-Q034 + dialogues.txt D01-D05) và câu bổ sung của nhóm.
+#	5 nhóm: VALID | PARAPHRASE | OUT_OF_SCOPE | NO_INFO | CONTEXT. expected_keywords: các chuỗi phải có trong câu trả lời (|).
+V01	VALID	-	Môn NLP có bao nhiêu tín chỉ?	GET_COURSE_INFO	ANSWERED	3	course_info.txt
+V02	VALID	-	Môn học gồm những phần nào?	GET_COURSE_INFO	ANSWERED	syntactic|semantic	course_info.txt
+V03	VALID	-	Tuần 3 học gì?	GET_SCHEDULE	ANSWERED	context-free grammar	schedule.txt
+V04	VALID	-	Chương 4 học vào tuần nào?	GET_SCHEDULE	ANSWERED	week 04	schedule.txt
+V05	VALID	-	Chương nào nói về CFG?	GET_TOPIC	ANSWERED	chapter 3	topics.txt
+V06	VALID	-	PCFG được học ở đâu?	GET_TOPIC	ANSWERED	chapter 6	topics.txt
+V07	VALID	-	Chương nào nói về semantic grammar?	GET_TOPIC	ANSWERED	chapter 10	topics.txt
+V08	VALID	-	L.O.2.5 là gì?	GET_LO	ANSWERED	xác suất	faq.txt
+V09	VALID	-	L.O.4.2 liên quan đến nội dung nào?	GET_LO	ANSWERED	diễn ngôn	faq.txt
+V10	VALID	-	Bài tập lớn yêu cầu xây dựng những gì?	GET_ASSIGNMENT	ANSWERED	grammar	assignments.txt
+V11	VALID	-	Phần I của bài tập lớn là gì?	GET_ASSIGNMENT	ANSWERED	parser	assignments.txt
+V12	VALID	-	Có được dùng LLM/RAG không?	GET_RULE	ANSWERED	mở rộng	regulations.txt
+V13	VALID	-	Quy định về sử dụng AI là gì?	GET_RULE	ANSWERED	khai báo	regulations.txt
+V14	VALID	-	Midterm bao nhiêu phút?	GET_COURSE_INFO	ANSWERED	60	course_info.txt
+V15	VALID	-	Final bao nhiêu phút?	GET_COURSE_INFO	ANSWERED	90	course_info.txt
+V16	VALID	-	Tài liệu tham khảo về statistical NLP là gì?	GET_RESOURCE	ANSWERED	statistical	resources.txt
+V17	VALID	-	Tài liệu nào liên quan đến Python NLP?	GET_RESOURCE	ANSWERED	python	resources.txt
+V18	VALID	-	Chương 12 nói về gì?	GET_TOPIC	ANSWERED	discourse	topics.txt
+V19	VALID	-	Chương nào học về selectional restriction?	GET_TOPIC	ANSWERED	chapter 9	topics.txt
+V20	VALID	-	Deadline bài tập lớn là khi nào?	GET_DEADLINE	ANSWERED	week 08|week 12|week 15	schedule.txt
+P01	PARAPHRASE	-	CO3085 có mấy tín chỉ?	GET_COURSE_INFO	ANSWERED	3	-
+P02	PARAPHRASE	-	Học phần NLP được mấy tín chỉ?	GET_COURSE_INFO	ANSWERED	3	-
+P03	PARAPHRASE	-	Nội dung tuần 7 là gì?	GET_SCHEDULE	ANSWERED	probability	schedule.txt
+P04	PARAPHRASE	-	Chương 9 nói về cái gì?	GET_TOPIC	ANSWERED	ambiguity	topics.txt
+P05	PARAPHRASE	-	CFG được dạy ở chương mấy?	GET_TOPIC	ANSWERED	chapter 3	topics.txt
+P06	PARAPHRASE	-	Word sense disambiguation học ở chương nào?	GET_TOPIC	ANSWERED	chapter 9	topics.txt
+P07	PARAPHRASE	-	Chương nào học về question answering?	GET_TOPIC	ANSWERED	chapter 11	topics.txt
+P08	PARAPHRASE	-	Sinh viên có phải khai báo khi dùng ChatGPT không?	GET_RULE	ANSWERED	khai báo	regulations.txt
+P09	PARAPHRASE	-	Có được dùng thư viện NLP có sẵn không?	GET_RULE	ANSWERED	thư viện	regulations.txt
+P10	PARAPHRASE	-	Có được sao chép bài của nhóm khác không?	GET_RULE	ANSWERED	sao chép	regulations.txt
+P11	PARAPHRASE	-	Thi giữa kỳ bao nhiêu phút?	GET_COURSE_INFO	ANSWERED	60	course_info.txt
+P12	PARAPHRASE	-	Thời gian làm bài thi cuối kỳ là bao lâu?	GET_COURSE_INFO	ANSWERED	90	-
+P13	PARAPHRASE	-	Thi giữa kỳ chiếm bao nhiêu phần trăm?	GET_COURSE_INFO	ANSWERED	30	course_info.txt
+P14	PARAPHRASE	-	Điểm bài tập lớn chiếm bao nhiêu phần trăm?	GET_COURSE_INFO	ANSWERED	15	course_info.txt
+P15	PARAPHRASE	-	Bài tập lớn làm theo nhóm mấy người?	GET_ASSIGNMENT	ANSWERED	3-4	assignments.txt
+P16	PARAPHRASE	-	Sách nào dạy NLP bằng Python?	GET_RESOURCE	ANSWERED	python	resources.txt
+P17	PARAPHRASE	-	Giáo trình chính của môn là gì?	GET_RESOURCE	ANSWERED	textbook	resources.txt
+P18	PARAPHRASE	-	Môn NLP có những chuẩn đầu ra nào?	GET_LO	ANSWERED	lo1|lo4	course_info.txt
+P19	PARAPHRASE	-	Checkpoint 1 của bài tập lớn vào tuần nào?	-	ANSWERED	week 08	schedule.txt
+P20	PARAPHRASE	-	Khi nào nộp bản cuối của BTL?	GET_DEADLINE	ANSWERED	week 15	schedule.txt
+P21	PARAPHRASE	-	Phần đánh giá của bài tập lớn cần làm gì?	GET_ASSIGNMENT	ANSWERED	test set	assignments.txt
+O01	OUT_OF_SCOPE	-	Hôm nay ở TP.HCM có mưa không?	OUT_OF_DOMAIN	OUT_OF_DOMAIN	-	-
+O02	OUT_OF_SCOPE	-	Ai là tổng thống của Pháp?	OUT_OF_DOMAIN	OUT_OF_DOMAIN	-	-
+O03	OUT_OF_SCOPE	-	Hãy giải bài tập xác suất này giúp tôi.	OUT_OF_DOMAIN	OUT_OF_DOMAIN	-	-
+O04	OUT_OF_SCOPE	-	Giá bitcoin hôm nay là bao nhiêu?	OUT_OF_DOMAIN	OUT_OF_DOMAIN	-	-
+O05	OUT_OF_SCOPE	-	Đội nào vô địch World Cup 2022?	OUT_OF_DOMAIN	OUT_OF_DOMAIN	-	-
+O06	OUT_OF_SCOPE	-	Cách nấu phở bò ngon?	OUT_OF_DOMAIN	OUT_OF_DOMAIN	-	-
+O07	OUT_OF_SCOPE	-	Viết code Python giúp tôi đi	OUT_OF_DOMAIN	OUT_OF_DOMAIN	-	-
+O08	OUT_OF_SCOPE	-	Thủ đô của Nhật Bản là gì?	OUT_OF_DOMAIN	OUT_OF_DOMAIN	-	-
+N01	NO_INFO	-	Giảng viên dạy môn NLP là ai?	GET_INSTRUCTOR	NOT_FOUND	-	-
+N02	NO_INFO	-	Email của giảng viên là gì?	GET_INSTRUCTOR	NOT_FOUND	-	-
+N03	NO_INFO	-	Phòng học của môn NLP ở đâu?	-	NOT_FOUND	-	-
+N04	NO_INFO	-	Chương 13 nói về gì?	-	NOT_FOUND	-	-
+N05	NO_INFO	-	Tuần 16 học gì?	-	NOT_FOUND	-	-
+N06	NO_INFO	-	Midterm thi vào tuần nào?	-	NOT_FOUND	-	-
+N07	NO_INFO	-	Có được nộp bài trễ không?	-	NOT_FOUND	-	-
+N08	NO_INFO	-	Học phí môn này bao nhiêu?	-	NOT_FOUND	-	-
+C01	CONTEXT	D01	Tuần 3 học gì?	GET_SCHEDULE	ANSWERED	context-free grammar	schedule.txt
+C02	CONTEXT	D01	Tài liệu của chương này là gì?	GET_RESOURCE	ANSWERED	title	resources.txt
+C03	CONTEXT	D02	Chương 4 nói về gì?	GET_TOPIC	ANSWERED	feature	topics.txt
+C04	CONTEXT	D02	Nó có liên quan đến parsing không?	GET_TOPIC	ANSWERED	parsing	topics.txt
+C05	CONTEXT	D03	Bài tập lớn có phần parser không?	GET_ASSIGNMENT	ANSWERED	parser	assignments.txt
+C06	CONTEXT	D03	Phần này cần xuất file gì?	GET_ASSIGNMENT	ANSWERED	parse-results.txt	assignments.txt
+C07	CONTEXT	D04	Chương 11 có hỏi đáp không?	GET_TOPIC	ANSWERED	question answering	topics.txt
+C08	CONTEXT	D04	Còn chương sau?	GET_TOPIC	ANSWERED	chapter 12	topics.txt
+C09	CONTEXT	D05	L.O.2.5 học về gì?	GET_LO	ANSWERED	xác suất	faq.txt
+C10	CONTEXT	D05	Nội dung này nằm ở chương nào?	GET_TOPIC	ANSWERED	chapter 6	topics.txt
+C11	CONTEXT	D06	Phần II của bài tập lớn yêu cầu gì?	GET_ASSIGNMENT	ANSWERED	intent	assignments.txt
+C12	CONTEXT	D06	Còn phần III?	GET_ASSIGNMENT	ANSWERED	discourse	assignments.txt
+C13	CONTEXT	D07	Chương 3 nói về gì?	GET_TOPIC	ANSWERED	grammar	topics.txt
+C14	CONTEXT	D07	Chương đó học vào tuần nào?	GET_SCHEDULE	ANSWERED	week 03	schedule.txt

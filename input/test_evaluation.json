@@ -1,6 +1,0 @@
-[
-    {"query": "Môn NLP có bao nhiêu tín chỉ?", "expected_intent": "GET_COURSE_INFO"},
-    {"query": "Tuần 5 học cái gì?", "expected_intent": "GET_TOPIC"},
-    {"query": "Phở bò Hà Nội giá bao nhiêu?", "expected_intent": "OUT_OF_DOMAIN"},
-    {"query": "Có được dùng ChatGPT làm bài tập lớn không?", "expected_intent": "GET_RULE"}
-]

@@ -1,0 +1,84 @@
+==============================================================================
+HỘI THOẠI 01
+  Sinh viên : Tuần 3 học gì?
+  Ngữ cảnh  : (không dùng ngữ cảnh)
+  Diễn giải : Tuần 3 học gì?
+  Semantic  : GET_SCHEDULE(text="Tuần 3 học gì?")  # keyword fallback
+  Hệ thống  : WEEK 03 — topics: context-free grammar; grammar and sentence structure; top-down parsing; bottom-up chart parsing; top-down chart parsing; probabilistic context-free grammar; dependency grammar; Stanford dependencies [Nguồn: schedule.txt#4]
+  Đáp án mẫu: Tuần 3 học Chương 3 về Văn phạm và phân tích cú pháp, gồm CFG, top-down parsing, bottom-up chart parsing, PCFG và dependency grammar.
+
+  Sinh viên : Tài liệu của chương này là gì?
+  Ngữ cảnh  : "chương này" -> chapter=chương 3
+  Kỳ vọng TC: "chương này" -> CH03
+  Diễn giải : Tài liệu của chương 3 là gì?
+  Semantic  : GET_RESOURCE(text="Tài liệu của chương 3 là gì?")  # keyword fallback
+  Hệ thống  : REFERENCE 3 — title: Speech and Language Processing | TEXTBOOK 3 — title: Xử lý ngôn ngữ tự nhiên [Nguồn: resources.txt#6, resources.txt#3]
+  Đáp án mẫu: Có thể tham khảo các tài liệu nền tảng NLP trong danh sách resources.
+
+==============================================================================
+HỘI THOẠI 02
+  Sinh viên : Chương 4 nói về gì?
+  Ngữ cảnh  : (không dùng ngữ cảnh)
+  Diễn giải : Chương 4 nói về gì?
+  Semantic  : GET_TOPIC(text="Chương 4 nói về gì?")  # keyword fallback
+  Hệ thống  : CHAPTER 4: FEATURES AND AUGMENTED GRAMMAR — summary: The chapter extends formal grammar with feature systems and augmented grammar. It covers lexicon, parsing with features, augmented transition networks, generalized feature systems and unification grammar. [Nguồn: topics.txt#4]
+  Đáp án mẫu: Chương 4 nói về Features và Augmented Grammar.
+
+  Sinh viên : Nó có liên quan đến parsing không?
+  Ngữ cảnh  : "Nó" -> focus=chương 4
+  Kỳ vọng TC: "Nó" -> CH04
+  Diễn giải : chương 4 có liên quan đến parsing không?
+  Semantic  : GET_TOPIC(text="chương 4 có liên quan đến parsing không?")  # keyword fallback
+  Hệ thống  : CHAPTER 4: FEATURES AND AUGMENTED GRAMMAR — summary: The chapter extends formal grammar with feature systems and augmented grammar. It covers lexicon, parsing with features, augmented transition networks, generalized feature systems and unification grammar.; subtopics: 4.1 Feature systems and augmented grammars; 4.2 Basic feature systems for English; 4.3 Lexicon; 4.4 Simple grammar using feature systems; 4.5 Parsing with features; 4.6 Augmented transition networks; 4.7 Generalized feature systems and unification grammar [Nguồn: topics.txt#4]
+  Đáp án mẫu: Có. Chương 4 trình bày parsing với features và augmented grammar.
+
+==============================================================================
+HỘI THOẠI 03
+  Sinh viên : Bài tập lớn có phần parser không?
+  Ngữ cảnh  : (không dùng ngữ cảnh)
+  Diễn giải : Bài tập lớn có phần parser không?
+  Semantic  : GET_ASSIGNMENT(text="Bài tập lớn có phần parser không?")  # keyword fallback
+  Hệ thống  : PART I - Grammar and Parser — requirements: xây dựng grammar cho miền Course Assistant; sinh câu hợp lệ từ grammar; xây dựng parser; xuất parse tree; xử lý câu không hợp lệ; suggested_outputs: output/grammar.txt; output/samples.txt; output/parse-results.txt [Nguồn: assignments.txt#2]
+  Đáp án mẫu: Có. Phần I của bài tập lớn yêu cầu xây dựng grammar và parser.
+
+  Sinh viên : Phần này cần xuất file gì?
+  Ngữ cảnh  : "Phần này" -> part=phần I
+  Kỳ vọng TC: "Phần này" -> PART_I_GRAMMAR_PARSER
+  Diễn giải : phần I cần xuất file gì?
+  Semantic  : GET_ASSIGNMENT(text="phần I cần xuất file gì?")  # keyword fallback
+  Hệ thống  : PART I - Grammar and Parser — requirements: xây dựng grammar cho miền Course Assistant; sinh câu hợp lệ từ grammar; xây dựng parser; xuất parse tree; xử lý câu không hợp lệ; suggested_outputs: output/grammar.txt; output/samples.txt; output/parse-results.txt [Nguồn: assignments.txt#2]
+  Đáp án mẫu: Các output mẫu gồm grammar.txt, samples.txt và parse-results.txt.
+
+==============================================================================
+HỘI THOẠI 04
+  Sinh viên : Chương 11 có hỏi đáp không?
+  Ngữ cảnh  : (không dùng ngữ cảnh)
+  Diễn giải : Chương 11 có hỏi đáp không?
+  Semantic  : GET_TOPIC(text="Chương 11 có hỏi đáp không?")  # keyword fallback
+  Hệ thống  : CHAPTER 11: KNOWLEDGE REPRESENTATION AND REASONING — keywords: knowledge representation, reasoning, frame, QA; summary: The chapter introduces knowledge representation and reasoning and applies them to simple natural-language question answering. [Nguồn: topics.txt#11]
+  Đáp án mẫu: Có. Chương 11 đề cập đến procedural semantics và question answering.
+
+  Sinh viên : Còn chương sau?
+  Ngữ cảnh  : "chương sau" -> chapter+1=chương 12; "(tỉnh lược)" -> lặp lại câu trước: Chương 11 có hỏi đáp không?
+  Kỳ vọng TC: "chương sau" -> CH12
+  Diễn giải : chương 12 có hỏi đáp không?
+  Semantic  : GET_TOPIC(text="chương 12 có hỏi đáp không?")  # keyword fallback
+  Hệ thống  : CHAPTER 12: DISCOURSE CONTEXT AND REFERENCE — summary: The chapter introduces local discourse context and discourse entities, with emphasis on reference expressions, pronouns, centering, definite descriptions, sets, ellipsis and surface anaphora. [Nguồn: topics.txt#12]
+  Đáp án mẫu: Chương 12 tập trung vào discourse context và reference.
+
+==============================================================================
+HỘI THOẠI 05
+  Sinh viên : L.O.2.5 học về gì?
+  Ngữ cảnh  : (không dùng ngữ cảnh)
+  Diễn giải : L.O.2.5 học về gì?
+  Semantic  : GET_LO(text="L.O.2.5 học về gì?")  # keyword fallback
+  Hệ thống  : FAQ Q10: L.O.2.5 liên quan đến nội dung gì? — L.O.2.5 liên quan đến lý thuyết xác suất và việc giải quyết nhập; nhằng từ ở mức câu. | detailed_learning_outcomes — detailed_learning_outcomes: LO1.1 - Hiểu cấu trúc hệ thống NLP, ứng dụng và cách đánh giá hệ thống hiểu ngôn ngữ tự nhiên. LO2.1 - Kiến thức cơ sở về cú pháp tiếng Anh. LO2.2 - Kiến thức cơ bản về văn phạm và phân tích cú pháp. LO2.3 - Kiến thức về nét và văn phạm gia tố. LO2.4 - Kiến thức tạo văn phạm cho ngôn ngữ tự nhiên và phương pháp parsing. LO2.5 - Kiến thức xác suất để giải quyết nhập nhằng từ ở mức câu. LO3.1 - Kiến thức về ngôn ngữ dạng luận lý và tạo dạng luận lý đơn giản. LO3.2 - Tạo tự động diễn dịch ngữ nghĩa cho câu tự nhiên. LO3.3 - Giải quyết nhập nhằng ngữ nghĩa dựa trên tri thức và thống kê. LO3.4 - Diễn dịch ngữ nghĩa bằng quan hệ văn phạm và văn phạm ngữ nghĩa. LO4.1 - Biểu diễn tri thức, suy diễn và xây dựng hệ thống hỏi đáp đơn giản. LO4.2 - Ngữ cảnh diễn ngôn cục bộ và sự tham chiếu. [Nguồn: faq.txt#10, course_info.txt#6]
+  Đáp án mẫu: L.O.2.5 liên quan đến lý thuyết xác suất để giải quyết nhập nhằng từ ở mức câu.
+
+  Sinh viên : Nội dung này nằm ở chương nào?
+  Ngữ cảnh  : "Nội dung này" -> focus=L.O.2.5
+  Kỳ vọng TC: "Nội dung này" -> LO2.5
+  Diễn giải : L.O.2.5 nằm ở chương nào?
+  Semantic  : GET_TOPIC(text="L.O.2.5 nằm ở chương nào?")  # keyword fallback
+  Hệ thống  : CHAPTER 6: AMBIGUITY RESOLUTION - STATISTICAL METHODS — summary: Statistical methods are introduced for resolving ambiguity at sentence level. Topics include probability theory, probability estimation, part-of-speech tagging, lexical probabilities, PCFG and best-first parsing. [Nguồn: topics.txt#6]
+  Đáp án mẫu: Nội dung này thuộc Chương 6, Ambiguity Resolution: Statistical Methods.

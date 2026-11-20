@@ -1,9 +1,61 @@
 {
+  "_comment": "Cấu hình pipeline. Có thể ghi đè bằng biến môi trường: LLM_PROVIDER, LLM_MODEL, OPENAI_API_KEY, GEMINI_API_KEY, OLLAMA_HOST, KB_DIR, TOP_K.",
   "grammar": "data/grammar.cfg",
+  "kb_dir": "data/course",
+  "seed": 42,
+  "max_samples": 10000,
   "top_k": 3,
-  "components": {
-    "context": "src.dialogue.memory:create_context",
-    "retriever": "src.rag.retriever:create_retriever",
-    "generator": "src.rag.generator:create_generator"
+  "llm": {
+    "provider": "none",
+    "model": "",
+    "temperature": 0.0,
+    "timeout": 60
+  },
+  "retrieval": {
+    "k1": 1.5,
+    "b": 0.4,
+    "intent_boost": 1.6,
+    "title_boost": 1.3,
+    "min_score": 1.0
+  },
+  "gating": {
+    "domain_min_coverage": 0.5,
+    "domain_min_word_coverage": 0.6,
+    "answer_min_coverage": 0.5
+  },
+  "intent_sources": {
+    "GET_COURSE_INFO": [
+      "course_info",
+      "course-info",
+      "faq"
+    ],
+    "GET_TOPIC": [
+      "topics",
+      "faq"
+    ],
+    "GET_SCHEDULE": [
+      "schedule"
+    ],
+    "GET_ASSIGNMENT": [
+      "assignment"
+    ],
+    "GET_DEADLINE": [
+      "schedule",
+      "faq"
+    ],
+    "GET_RESOURCE": [
+      "resource"
+    ],
+    "GET_RULE": [
+      "regulation",
+      "faq"
+    ],
+    "GET_LO": [
+      "course_info",
+      "faq"
+    ],
+    "GET_INSTRUCTOR": [
+      "course_info"
+    ]
   }
 }

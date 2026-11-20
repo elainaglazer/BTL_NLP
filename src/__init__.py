@@ -1,1 +1,1 @@
-"""Course Assistant project."""
+"""Course Assistant - NLP pipeline package (CO3085)."""

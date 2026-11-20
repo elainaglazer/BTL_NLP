@@ -1,5 +1,313 @@
-=== BÁO CÁO ĐÁNH GIÁ ===
-- Tổng số câu kiểm thử: 4
-- Số lượng đúng: 0
-- Độ chính xác (Accuracy): 0.00%
+ĐÁNH GIÁ HỆ THỐNG COURSE ASSISTANT
+==============================================================================
+Test set           : test_set.tsv (71 câu)
+Chế độ sinh        : extractive
+Số câu trả lời đúng: 70/71 = 98.6%  (Accuracy)
+Intent accuracy    : 64/64 = 100.0%
+Status accuracy    : 69/71 = 97.2%
+Retrieval Hit@3     : 52/52 = 100.0%
+Từ chối (NOT_FOUND/OUT_OF_DOMAIN): Precision=1.000 Recall=0.938 F1=0.968 (TP=15, FP=0, FN=1)
 
+Theo nhóm:
+  CONTEXT       14/14 = 100.0%
+  NO_INFO       7/8 = 87.5%
+  OUT_OF_SCOPE  8/8 = 100.0%
+  PARAPHRASE    21/21 = 100.0%
+  VALID         20/20 = 100.0%
+
+CHI TIẾT
+------------------------------------------------------------------------------
+OK  [V01] (VALID) Môn NLP có bao nhiêu tín chỉ?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=3 source=course_info.txt
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=True top=['course_info.txt#1', 'faq.txt#1', 'course_info.txt#3']
+      trả lời: course_id — credits: 3 | FAQ Q1: Môn NLP có bao nhiêu tín chỉ? — Môn Xử lý Ngôn ngữ Tự nhiên (CO3085) có 3 tín chỉ. [Nguồn: course_info.txt#1, faq.txt#1]
+OK  [V02] (VALID) Môn học gồm những phần nào?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=syntactic|semantic source=course_info.txt
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['course_info.txt#4', 'course_info.txt#2', 'faq.txt#2']
+      trả lời: main_parts — main_parts: Part I - Syntactic Processing; Part II - Semantic Interpretation; Part III - Context and World Knowledge [Nguồn: course_info.txt#4]
+OK  [V03] (VALID) Tuần 3 học gì?
+      kỳ vọng: intent=GET_SCHEDULE status=ANSWERED keywords=context-free grammar source=schedule.txt
+      hệ thống: intent=GET_SCHEDULE status=ANSWERED parsed=False top=['schedule.txt#4', 'schedule.txt#10', 'schedule.txt#3']
+      trả lời: WEEK 03 — topics: context-free grammar; grammar and sentence structure; top-down parsing; bottom-up chart parsing; top-down chart parsing; probabilistic context-free grammar; dependency grammar; Stanford dependencies [Nguồn: schedule.txt#4]
+OK  [V04] (VALID) Chương 4 học vào tuần nào?
+      kỳ vọng: intent=GET_SCHEDULE status=ANSWERED keywords=week 04 source=schedule.txt
+      hệ thống: intent=GET_SCHEDULE status=ANSWERED parsed=False top=['schedule.txt#5', 'schedule.txt#6', 'schedule.txt#10']
+      trả lời: WEEK 04 — topics: feature systems; augmented grammars; feature systems for English; lexicon; grammar using feature systems; parsing with features | WEEK 05 — chapter: Chapter 4 [Nguồn: schedule.txt#5, schedule.txt#6]
+OK  [V05] (VALID) Chương nào nói về CFG?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 3 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#3', 'topics.txt#5', 'topics.txt#2']
+      trả lời: CHAPTER 3: GRAMMAR AND PARSING — keywords: CFG, parsing, PCFG, dependency grammar; summary: The chapter introduces context-free grammar, sentence structure and; parsing methods. It also introduces probabilistic CFG and dependency; grammar. [Nguồn: topics.txt#3]
+OK  [V06] (VALID) PCFG được học ở đâu?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 6 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#6', 'topics.txt#3', 'topics.txt#5']
+      trả lời: CHAPTER 6: AMBIGUITY RESOLUTION - STATISTICAL METHODS — keywords: probability, POS tagging, lexical probability, PCFG, best-first; summary: Statistical methods are introduced for resolving ambiguity at sentence level. Topics include probability theory, probability estimation, part-of-speech tagging, lexical probabilities, PCFG and best-first parsing. | CHAPTER 3: GRAMMAR AND PARSING — keywords: CFG, parsing, PCFG, dependency grammar [Nguồn: topics.txt#6, topics.txt#3]
+OK  [V07] (VALID) Chương nào nói về semantic grammar?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 10 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#10', 'topics.txt#8', 'topics.txt#4']
+      trả lời: CHAPTER 10: OTHER STRATEGIES FOR SEMANTIC INTERPRETATION — keywords: grammatical relations, semantic grammar, template matching; summary: Alternative approaches to semantic interpretation include grammatical relations, semantic grammars, template matching and semantically driven parsing. [Nguồn: topics.txt#10]
+OK  [V08] (VALID) L.O.2.5 là gì?
+      kỳ vọng: intent=GET_LO status=ANSWERED keywords=xác suất source=faq.txt
+      hệ thống: intent=GET_LO status=ANSWERED parsed=False top=['faq.txt#10', 'course_info.txt#6', 'course_info.txt#5']
+      trả lời: FAQ Q10: L.O.2.5 liên quan đến nội dung gì? — L.O.2.5 liên quan đến lý thuyết xác suất và việc giải quyết nhập; nhằng từ ở mức câu. | detailed_learning_outcomes — detailed_learning_outcomes: LO1.1 - Hiểu cấu trúc hệ thống NLP, ứng dụng và cách đánh giá hệ thống hiểu ngôn ngữ tự nhiên. LO2.1 - Kiến thức cơ sở về cú pháp tiếng Anh. LO2.2 - Kiến thức cơ bản về văn phạm và phân tích cú pháp. LO2.3 - Kiến thức về nét và văn phạm gia tố. LO2.4 - Kiến thức tạo văn phạm cho ngôn ngữ tự nhiên và phương pháp parsing. LO2.5 - Kiến thức xác suất để giải quyết nhập nhằng từ ở mức câu. LO3.1 - Kiến thức về ngôn ngữ dạng luận lý và tạo dạng luận lý đơn giản. LO3.2 - Tạo tự động diễn dịch ngữ nghĩa cho câu tự nhiên. LO3.3 - Giải quyết nhập nhằng ngữ nghĩa dựa trên tri thức và thống kê. LO3.4 - Diễn dịch ngữ nghĩa bằng quan hệ văn phạm và văn phạm ngữ nghĩa. LO4.1 - Biểu diễn tri thức, suy diễn và xây dựng hệ thống hỏi đáp đơn giản. LO4.2 - Ngữ cảnh diễn ngôn cục bộ và sự tham chiếu. [Nguồn: faq.txt#10, course_info.txt#6]
+OK  [V09] (VALID) L.O.4.2 liên quan đến nội dung nào?
+      kỳ vọng: intent=GET_LO status=ANSWERED keywords=diễn ngôn source=faq.txt
+      hệ thống: intent=GET_LO status=ANSWERED parsed=False top=['faq.txt#9', 'course_info.txt#6', 'course_info.txt#5']
+      trả lời: FAQ Q9: L.O.4.2 liên quan đến nội dung gì? — L.O.4.2 liên quan đến ngữ cảnh diễn ngôn cục bộ và sự tham chiếu. | detailed_learning_outcomes — detailed_learning_outcomes: LO1.1 - Hiểu cấu trúc hệ thống NLP, ứng dụng và cách đánh giá hệ thống hiểu ngôn ngữ tự nhiên. LO2.1 - Kiến thức cơ sở về cú pháp tiếng Anh. LO2.2 - Kiến thức cơ bản về văn phạm và phân tích cú pháp. LO2.3 - Kiến thức về nét và văn phạm gia tố. LO2.4 - Kiến thức tạo văn phạm cho ngôn ngữ tự nhiên và phương pháp parsing. LO2.5 - Kiến thức xác suất để giải quyết nhập nhằng từ ở mức câu. LO3.1 - Kiến thức về ngôn ngữ dạng luận lý và tạo dạng luận lý đơn giản. LO3.2 - Tạo tự động diễn dịch ngữ nghĩa cho câu tự nhiên. LO3.3 - Giải quyết nhập nhằng ngữ nghĩa dựa trên tri thức và thống kê. LO3.4 - Diễn dịch ngữ nghĩa bằng quan hệ văn phạm và văn phạm ngữ nghĩa. LO4.1 - Biểu diễn tri thức, suy diễn và xây dựng hệ thống hỏi đáp đơn giản. LO4.2 - Ngữ cảnh diễn ngôn cục bộ và sự tham chiếu. [Nguồn: faq.txt#9, course_info.txt#6]
+OK  [V10] (VALID) Bài tập lớn yêu cầu xây dựng những gì?
+      kỳ vọng: intent=GET_ASSIGNMENT status=ANSWERED keywords=grammar source=assignments.txt
+      hệ thống: intent=GET_ASSIGNMENT status=ANSWERED parsed=False top=['assignments.txt#2', 'assignments.txt#5', 'assignments.txt#3']
+      trả lời: PART I - Grammar and Parser — requirements: xây dựng grammar cho miền Course Assistant; sinh câu hợp lệ từ grammar; xây dựng parser; xuất parse tree; xử lý câu không hợp lệ | PART IV - Evaluation — requirements: tạo test set; đo accuracy hoặc metric phù hợp; phân tích lỗi; trình bày các trường hợp hệ thống không trả lời đúng [Nguồn: assignments.txt#2, assignments.txt#5]
+OK  [V11] (VALID) Phần I của bài tập lớn là gì?
+      kỳ vọng: intent=GET_ASSIGNMENT status=ANSWERED keywords=parser source=assignments.txt
+      hệ thống: intent=GET_ASSIGNMENT status=ANSWERED parsed=False top=['assignments.txt#2', 'assignments.txt#5', 'assignments.txt#3']
+      trả lời: PART I - Grammar and Parser — requirements: xây dựng grammar cho miền Course Assistant; sinh câu hợp lệ từ grammar; xây dựng parser; xuất parse tree; xử lý câu không hợp lệ; suggested_outputs: output/grammar.txt; output/samples.txt; output/parse-results.txt [Nguồn: assignments.txt#2]
+OK  [V12] (VALID) Có được dùng LLM/RAG không?
+      kỳ vọng: intent=GET_RULE status=ANSWERED keywords=mở rộng source=regulations.txt
+      hệ thống: intent=GET_RULE status=ANSWERED parsed=False top=['regulations.txt#8', 'faq.txt#12', 'regulations.txt#4']
+      trả lời: LLM_RAG — LLM_RAG: LLM/RAG nếu được sử dụng chỉ nên đóng vai trò mở rộng. Sinh viên phải; mô tả rõ mô hình, dữ liệu, retrieval và cách đánh giá. [Nguồn: regulations.txt#8]
+OK  [V13] (VALID) Quy định về sử dụng AI là gì?
+      kỳ vọng: intent=GET_RULE status=ANSWERED keywords=khai báo source=regulations.txt
+      hệ thống: intent=GET_RULE status=ANSWERED parsed=False top=['regulations.txt#4', 'faq.txt#12', 'regulations.txt#5']
+      trả lời: AI_usage — AI_usage: Sinh viên phải khai báo việc sử dụng AI trong báo cáo, nghiên cứu và; quá trình thực hiện theo quy định của môn học. [Nguồn: regulations.txt#4]
+OK  [V14] (VALID) Midterm bao nhiêu phút?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=60 source=course_info.txt
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['faq.txt#14', 'course_info.txt#8', 'faq.txt#15']
+      trả lời: FAQ Q14: Midterm kéo dài bao lâu? — Theo đề cương, midterm có thời lượng 60 phút. | exam_format — midterm: open-book, written, 60 minutes [Nguồn: faq.txt#14, course_info.txt#8]
+OK  [V15] (VALID) Final bao nhiêu phút?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=90 source=course_info.txt
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['faq.txt#15', 'course_info.txt#8', 'faq.txt#14']
+      trả lời: FAQ Q15: Final kéo dài bao lâu? — Theo đề cương, final có thời lượng 90 phút. | exam_format — final: open-book, written, 90 minutes [Nguồn: faq.txt#15, course_info.txt#8]
+OK  [V16] (VALID) Tài liệu tham khảo về statistical NLP là gì?
+      kỳ vọng: intent=GET_RESOURCE status=ANSWERED keywords=statistical source=resources.txt
+      hệ thống: intent=GET_RESOURCE status=ANSWERED parsed=False top=['resources.txt#4', 'resources.txt#2', 'resources.txt#6']
+      trả lời: REFERENCE 1 — title: Foundation of Statistical Natural Language Processing; usage: statistical NLP [Nguồn: resources.txt#4]
+OK  [V17] (VALID) Tài liệu nào liên quan đến Python NLP?
+      kỳ vọng: intent=GET_RESOURCE status=ANSWERED keywords=python source=resources.txt
+      hệ thống: intent=GET_RESOURCE status=ANSWERED parsed=False top=['resources.txt#5', 'resources.txt#1', 'resources.txt#2']
+      trả lời: REFERENCE 2 — title: Natural Language Processing with Python; usage: practical NLP with Python [Nguồn: resources.txt#5]
+OK  [V18] (VALID) Chương 12 nói về gì?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=discourse source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#12', 'topics.txt#5', 'topics.txt#2']
+      trả lời: CHAPTER 12: DISCOURSE CONTEXT AND REFERENCE — summary: The chapter introduces local discourse context and discourse entities, with emphasis on reference expressions, pronouns, centering, definite descriptions, sets, ellipsis and surface anaphora. [Nguồn: topics.txt#12]
+OK  [V19] (VALID) Chương nào học về selectional restriction?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 9 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#9', 'topics.txt#5', 'topics.txt#2']
+      trả lời: CHAPTER 9: AMBIGUITY RESOLUTION — keywords: selectional restriction, semantic network, WSD; subtopics: 9.1 Selectional restriction; 9.2 Semantic filtering using selectional restriction; 9.3 Semantic networks; 9.4 Statistical word sense disambiguation [Nguồn: topics.txt#9]
+OK  [V20] (VALID) Deadline bài tập lớn là khi nào?
+      kỳ vọng: intent=GET_DEADLINE status=ANSWERED keywords=week 08|week 12|week 15 source=schedule.txt
+      hệ thống: intent=GET_DEADLINE status=ANSWERED parsed=False top=['schedule.txt#16', 'schedule.txt#9', 'schedule.txt#13']
+      trả lời: WEEK 08 — milestone: BTL checkpoint 1 - grammar and parser | WEEK 12 — milestone: BTL checkpoint 2 - semantic interpretation and QA | WEEK 15 — milestone: BTL final submission and demo [Nguồn: schedule.txt#9, schedule.txt#13, schedule.txt#16]
+OK  [P01] (PARAPHRASE) CO3085 có mấy tín chỉ?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=3 source=-
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['faq.txt#1', 'course_info.txt#1', 'course_info.txt#3']
+      trả lời: FAQ Q1: Môn NLP có bao nhiêu tín chỉ? — Môn Xử lý Ngôn ngữ Tự nhiên (CO3085) có 3 tín chỉ. [Nguồn: faq.txt#1]
+OK  [P02] (PARAPHRASE) Học phần NLP được mấy tín chỉ?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=3 source=-
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['faq.txt#1', 'course_info.txt#1', 'course_info.txt#3']
+      trả lời: FAQ Q1: Môn NLP có bao nhiêu tín chỉ? — Môn Xử lý Ngôn ngữ Tự nhiên (CO3085) có 3 tín chỉ. [Nguồn: faq.txt#1]
+OK  [P03] (PARAPHRASE) Nội dung tuần 7 là gì?
+      kỳ vọng: intent=GET_SCHEDULE status=ANSWERED keywords=probability source=schedule.txt
+      hệ thống: intent=GET_SCHEDULE status=ANSWERED parsed=False top=['schedule.txt#8', 'schedule.txt#10', 'schedule.txt#3']
+      trả lời: WEEK 07 — topics: basic probability theory; estimating probabilities; part-of-speech tagging; lexical probabilities; probabilistic context-free grammar [Nguồn: schedule.txt#8]
+OK  [P04] (PARAPHRASE) Chương 9 nói về cái gì?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=ambiguity source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#9', 'topics.txt#5', 'topics.txt#2']
+      trả lời: CHAPTER 9: AMBIGUITY RESOLUTION — summary: The chapter covers knowledge-based and statistical methods for semantic ambiguity resolution. [Nguồn: topics.txt#9]
+OK  [P05] (PARAPHRASE) CFG được dạy ở chương mấy?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 3 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#3', 'topics.txt#5', 'topics.txt#2']
+      trả lời: CHAPTER 3: GRAMMAR AND PARSING — keywords: CFG, parsing, PCFG, dependency grammar; summary: The chapter introduces context-free grammar, sentence structure and; parsing methods. It also introduces probabilistic CFG and dependency; grammar. [Nguồn: topics.txt#3]
+OK  [P06] (PARAPHRASE) Word sense disambiguation học ở chương nào?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 9 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#9', 'topics.txt#7', 'topics.txt#2']
+      trả lời: CHAPTER 9: AMBIGUITY RESOLUTION — keywords: selectional restriction, semantic network, WSD; subtopics: 9.1 Selectional restriction; 9.2 Semantic filtering using selectional restriction; 9.3 Semantic networks; 9.4 Statistical word sense disambiguation [Nguồn: topics.txt#9]
+OK  [P07] (PARAPHRASE) Chương nào học về question answering?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 11 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#11', 'topics.txt#5', 'topics.txt#2']
+      trả lời: CHAPTER 11: KNOWLEDGE REPRESENTATION AND REASONING — keywords: knowledge representation, reasoning, frame, QA; summary: The chapter introduces knowledge representation and reasoning and applies them to simple natural-language question answering. [Nguồn: topics.txt#11]
+OK  [P08] (PARAPHRASE) Sinh viên có phải khai báo khi dùng ChatGPT không?
+      kỳ vọng: intent=GET_RULE status=ANSWERED keywords=khai báo source=regulations.txt
+      hệ thống: intent=GET_RULE status=ANSWERED parsed=False top=['regulations.txt#4', 'regulations.txt#5', 'regulations.txt#8']
+      trả lời: AI_usage — AI_usage: Sinh viên phải khai báo việc sử dụng AI trong báo cáo, nghiên cứu và; quá trình thực hiện theo quy định của môn học. [Nguồn: regulations.txt#4]
+OK  [P09] (PARAPHRASE) Có được dùng thư viện NLP có sẵn không?
+      kỳ vọng: intent=GET_RULE status=ANSWERED keywords=thư viện source=regulations.txt
+      hệ thống: intent=GET_RULE status=ANSWERED parsed=False top=['regulations.txt#7', 'regulations.txt#4', 'faq.txt#12']
+      trả lời: external_libraries — external_libraries: Được phép sử dụng thư viện công khai nếu tuân thủ yêu cầu của bài tập. [Nguồn: regulations.txt#7]
+OK  [P10] (PARAPHRASE) Có được sao chép bài của nhóm khác không?
+      kỳ vọng: intent=GET_RULE status=ANSWERED keywords=sao chép source=regulations.txt
+      hệ thống: intent=GET_RULE status=ANSWERED parsed=False top=['regulations.txt#6', 'regulations.txt#5', 'assignments.txt#1']
+      trả lời: assignment_sharing — assignment_sharing: Không được sao chép hoặc chia sẻ bài làm giữa các nhóm. [Nguồn: regulations.txt#6]
+OK  [P11] (PARAPHRASE) Thi giữa kỳ bao nhiêu phút?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=60 source=course_info.txt
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['faq.txt#14', 'course_info.txt#8', 'faq.txt#15']
+      trả lời: FAQ Q14: Midterm kéo dài bao lâu? — Theo đề cương, midterm có thời lượng 60 phút. | exam_format — midterm: open-book, written, 60 minutes [Nguồn: faq.txt#14, course_info.txt#8]
+OK  [P12] (PARAPHRASE) Thời gian làm bài thi cuối kỳ là bao lâu?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=90 source=-
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['faq.txt#15', 'faq.txt#14', 'course_info.txt#8']
+      trả lời: FAQ Q15: Final kéo dài bao lâu? — Theo đề cương, final có thời lượng 90 phút. | FAQ Q14: Midterm kéo dài bao lâu? — Theo đề cương, midterm có thời lượng 60 phút. [Nguồn: faq.txt#15, faq.txt#14]
+OK  [P13] (PARAPHRASE) Thi giữa kỳ chiếm bao nhiêu phần trăm?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=30 source=course_info.txt
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['course_info.txt#7', 'course_info.txt#4', 'course_info.txt#2']
+      trả lời: assessment — class_attention_and_assignments: 15 percent; midterm_exam: 30 percent [Nguồn: course_info.txt#7]
+OK  [P14] (PARAPHRASE) Điểm bài tập lớn chiếm bao nhiêu phần trăm?
+      kỳ vọng: intent=GET_COURSE_INFO status=ANSWERED keywords=15 source=course_info.txt
+      hệ thống: intent=GET_COURSE_INFO status=ANSWERED parsed=False top=['course_info.txt#7', 'faq.txt#12', 'course_info.txt#1']
+      trả lời: assessment — class_attention_and_assignments: 15 percent; major_assignment: 15 percent [Nguồn: course_info.txt#7]
+OK  [P15] (PARAPHRASE) Bài tập lớn làm theo nhóm mấy người?
+      kỳ vọng: intent=GET_ASSIGNMENT status=ANSWERED keywords=3-4 source=assignments.txt
+      hệ thống: intent=GET_ASSIGNMENT status=ANSWERED parsed=False top=['assignments.txt#1', 'assignments.txt#5', 'assignments.txt#3']
+      trả lời: MAJOR ASSIGNMENT - COURSE ASSISTANT — team_size: 3-4 students [Nguồn: assignments.txt#1]
+OK  [P16] (PARAPHRASE) Sách nào dạy NLP bằng Python?
+      kỳ vọng: intent=GET_RESOURCE status=ANSWERED keywords=python source=resources.txt
+      hệ thống: intent=GET_RESOURCE status=ANSWERED parsed=False top=['resources.txt#5', 'resources.txt#1', 'resources.txt#2']
+      trả lời: REFERENCE 2 — title: Natural Language Processing with Python; usage: practical NLP with Python | TEXTBOOK 1 — title: Lecture Slides from the Stanford Coursera course by Dan Jurafsky and Christopher Manning [Nguồn: resources.txt#5, resources.txt#1]
+OK  [P17] (PARAPHRASE) Giáo trình chính của môn là gì?
+      kỳ vọng: intent=GET_RESOURCE status=ANSWERED keywords=textbook source=resources.txt
+      hệ thống: intent=GET_RESOURCE status=ANSWERED parsed=False top=['resources.txt#1', 'resources.txt#2', 'resources.txt#3']
+      trả lời: TEXTBOOK 1 — title: Lecture Slides from the Stanford Coursera course by Dan Jurafsky and Christopher Manning | TEXTBOOK 2 — title: Introduction to Natural Language Processing [Nguồn: resources.txt#1, resources.txt#2]
+OK  [P18] (PARAPHRASE) Môn NLP có những chuẩn đầu ra nào?
+      kỳ vọng: intent=GET_LO status=ANSWERED keywords=lo1|lo4 source=course_info.txt
+      hệ thống: intent=GET_LO status=ANSWERED parsed=False top=['course_info.txt#5', 'course_info.txt#6', 'faq.txt#10']
+      trả lời: learning_outcomes — learning_outcomes: LO1 - Tổng quan về tổ chức hệ thống NLP và các ứng dụng. LO2 - Xử lý cú pháp; xây dựng văn phạm đơn giản và phân tích cú pháp. LO3 - Diễn dịch ngữ nghĩa; tạo dạng luận lý và giải quyết nhập nhằng. LO4 - Ngữ nghĩa và tri thức thế giới; xây dựng cơ sở tri thức và hệ thống hỏi đáp đơn giản. [Nguồn: course_info.txt#5]
+OK  [P19] (PARAPHRASE) Checkpoint 1 của bài tập lớn vào tuần nào?
+      kỳ vọng: intent=- status=ANSWERED keywords=week 08 source=schedule.txt
+      hệ thống: intent=GET_SCHEDULE status=ANSWERED parsed=False top=['schedule.txt#9', 'schedule.txt#13', 'schedule.txt#16']
+      trả lời: WEEK 08 — milestone: BTL checkpoint 1 - grammar and parser | WEEK 12 — milestone: BTL checkpoint 2 - semantic interpretation and QA [Nguồn: schedule.txt#9, schedule.txt#13]
+OK  [P20] (PARAPHRASE) Khi nào nộp bản cuối của BTL?
+      kỳ vọng: intent=GET_DEADLINE status=ANSWERED keywords=week 15 source=schedule.txt
+      hệ thống: intent=GET_DEADLINE status=ANSWERED parsed=False top=['schedule.txt#16', 'schedule.txt#9', 'schedule.txt#13']
+      trả lời: WEEK 08 — milestone: BTL checkpoint 1 - grammar and parser | WEEK 12 — milestone: BTL checkpoint 2 - semantic interpretation and QA | WEEK 15 — milestone: BTL final submission and demo [Nguồn: schedule.txt#9, schedule.txt#13, schedule.txt#16]
+OK  [P21] (PARAPHRASE) Phần đánh giá của bài tập lớn cần làm gì?
+      kỳ vọng: intent=GET_ASSIGNMENT status=ANSWERED keywords=test set source=assignments.txt
+      hệ thống: intent=GET_ASSIGNMENT status=ANSWERED parsed=False top=['assignments.txt#5', 'assignments.txt#3', 'assignments.txt#2']
+      trả lời: PART IV - Evaluation — requirements: tạo test set; đo accuracy hoặc metric phù hợp; phân tích lỗi; trình bày các trường hợp hệ thống không trả lời đúng [Nguồn: assignments.txt#5]
+OK  [O01] (OUT_OF_SCOPE) Hôm nay ở TP.HCM có mưa không?
+      kỳ vọng: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [O02] (OUT_OF_SCOPE) Ai là tổng thống của Pháp?
+      kỳ vọng: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [O03] (OUT_OF_SCOPE) Hãy giải bài tập xác suất này giúp tôi.
+      kỳ vọng: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [O04] (OUT_OF_SCOPE) Giá bitcoin hôm nay là bao nhiêu?
+      kỳ vọng: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [O05] (OUT_OF_SCOPE) Đội nào vô địch World Cup 2022?
+      kỳ vọng: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [O06] (OUT_OF_SCOPE) Cách nấu phở bò ngon?
+      kỳ vọng: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [O07] (OUT_OF_SCOPE) Viết code Python giúp tôi đi
+      kỳ vọng: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [O08] (OUT_OF_SCOPE) Thủ đô của Nhật Bản là gì?
+      kỳ vọng: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [N01] (NO_INFO) Giảng viên dạy môn NLP là ai?
+      kỳ vọng: intent=GET_INSTRUCTOR status=NOT_FOUND keywords=- source=-
+      hệ thống: intent=GET_INSTRUCTOR status=NOT_FOUND parsed=False top=['course_info.txt#3', 'regulations.txt#5', 'regulations.txt#6']
+      trả lời: Xin lỗi, tôi không tìm thấy thông tin này trong dữ liệu của môn học.
+OK  [N02] (NO_INFO) Email của giảng viên là gì?
+      kỳ vọng: intent=GET_INSTRUCTOR status=NOT_FOUND keywords=- source=-
+      hệ thống: intent=GET_INSTRUCTOR status=NOT_FOUND parsed=False top=['course_info.txt#3', 'regulations.txt#5', 'regulations.txt#6']
+      trả lời: Xin lỗi, tôi không tìm thấy thông tin này trong dữ liệu của môn học.
+OK  [N03] (NO_INFO) Phòng học của môn NLP ở đâu?
+      kỳ vọng: intent=- status=NOT_FOUND keywords=- source=-
+      hệ thống: intent=UNKNOWN status=NOT_FOUND parsed=False top=[]
+      trả lời: Xin lỗi, tôi không tìm thấy thông tin này trong dữ liệu của môn học.
+OK  [N04] (NO_INFO) Chương 13 nói về gì?
+      kỳ vọng: intent=- status=NOT_FOUND keywords=- source=-
+      hệ thống: intent=GET_TOPIC status=NOT_FOUND parsed=False top=['topics.txt#5', 'topics.txt#2', 'topics.txt#9']
+      trả lời: Xin lỗi, tôi không tìm thấy thông tin này trong dữ liệu của môn học.
+OK  [N05] (NO_INFO) Tuần 16 học gì?
+      kỳ vọng: intent=- status=NOT_FOUND keywords=- source=-
+      hệ thống: intent=GET_SCHEDULE status=NOT_FOUND parsed=False top=['schedule.txt#10', 'schedule.txt#3', 'schedule.txt#7']
+      trả lời: Xin lỗi, tôi không tìm thấy thông tin này trong dữ liệu của môn học.
+OK  [N06] (NO_INFO) Midterm thi vào tuần nào?
+      kỳ vọng: intent=- status=NOT_FOUND keywords=- source=-
+      hệ thống: intent=GET_SCHEDULE status=NOT_FOUND parsed=False top=['schedule.txt#10', 'schedule.txt#3', 'schedule.txt#7']
+      trả lời: Xin lỗi, tôi không tìm thấy thông tin này trong dữ liệu của môn học.
+SAI [N07] (NO_INFO) Có được nộp bài trễ không?
+      kỳ vọng: intent=- status=NOT_FOUND keywords=- source=-
+      hệ thống: intent=UNKNOWN status=ANSWERED parsed=False top=['regulations.txt#1', 'schedule.txt#16', 'assignments.txt#1']
+      trả lời: COURSE REGULATIONS - SAMPLE — Lưu ý: Các quy định chi tiết về deadline, format nộp bài và chính sách lớp học trong file này là dữ liệu MẪU phục vụ Course Assistant. Khi triển khai thực tế, các thông tin này phải được thay bằng thông tin chính thức. [Nguồn: regulations.txt#1]
+OK  [N08] (NO_INFO) Học phí môn này bao nhiêu?
+      kỳ vọng: intent=- status=NOT_FOUND keywords=- source=-
+      hệ thống: intent=OUT_OF_DOMAIN status=OUT_OF_DOMAIN parsed=False top=[]
+      trả lời: Xin lỗi, câu hỏi này nằm ngoài phạm vi của Course Assistant (chỉ hỗ trợ thông tin môn học).
+OK  [C01] (CONTEXT) Tuần 3 học gì?
+      kỳ vọng: intent=GET_SCHEDULE status=ANSWERED keywords=context-free grammar source=schedule.txt
+      hệ thống: intent=GET_SCHEDULE status=ANSWERED parsed=False top=['schedule.txt#4', 'schedule.txt#10', 'schedule.txt#3']
+      trả lời: WEEK 03 — topics: context-free grammar; grammar and sentence structure; top-down parsing; bottom-up chart parsing; top-down chart parsing; probabilistic context-free grammar; dependency grammar; Stanford dependencies [Nguồn: schedule.txt#4]
+OK  [C02] (CONTEXT) Tài liệu của chương này là gì?
+      kỳ vọng: intent=GET_RESOURCE status=ANSWERED keywords=title source=resources.txt
+      hệ thống: intent=GET_RESOURCE status=ANSWERED parsed=False top=['resources.txt#6', 'resources.txt#3', 'resources.txt#1']
+      ngữ cảnh: Tài liệu của chương 3 là gì?
+      trả lời: REFERENCE 3 — title: Speech and Language Processing | TEXTBOOK 3 — title: Xử lý ngôn ngữ tự nhiên [Nguồn: resources.txt#6, resources.txt#3]
+OK  [C03] (CONTEXT) Chương 4 nói về gì?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=feature source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#4', 'topics.txt#5', 'topics.txt#2']
+      trả lời: CHAPTER 4: FEATURES AND AUGMENTED GRAMMAR — summary: The chapter extends formal grammar with feature systems and augmented grammar. It covers lexicon, parsing with features, augmented transition networks, generalized feature systems and unification grammar. [Nguồn: topics.txt#4]
+OK  [C04] (CONTEXT) Nó có liên quan đến parsing không?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=parsing source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#4', 'schedule.txt#5', 'schedule.txt#6']
+      ngữ cảnh: chương 4 có liên quan đến parsing không?
+      trả lời: CHAPTER 4: FEATURES AND AUGMENTED GRAMMAR — summary: The chapter extends formal grammar with feature systems and augmented grammar. It covers lexicon, parsing with features, augmented transition networks, generalized feature systems and unification grammar.; subtopics: 4.1 Feature systems and augmented grammars; 4.2 Basic feature systems for English; 4.3 Lexicon; 4.4 Simple grammar using feature systems; 4.5 Parsing with features; 4.6 Augmented transition networks; 4.7 Generalized feature systems and unification grammar [Nguồn: topics.txt#4]
+OK  [C05] (CONTEXT) Bài tập lớn có phần parser không?
+      kỳ vọng: intent=GET_ASSIGNMENT status=ANSWERED keywords=parser source=assignments.txt
+      hệ thống: intent=GET_ASSIGNMENT status=ANSWERED parsed=False top=['assignments.txt#2', 'assignments.txt#5', 'assignments.txt#3']
+      trả lời: PART I - Grammar and Parser — requirements: xây dựng grammar cho miền Course Assistant; sinh câu hợp lệ từ grammar; xây dựng parser; xuất parse tree; xử lý câu không hợp lệ; suggested_outputs: output/grammar.txt; output/samples.txt; output/parse-results.txt [Nguồn: assignments.txt#2]
+OK  [C06] (CONTEXT) Phần này cần xuất file gì?
+      kỳ vọng: intent=GET_ASSIGNMENT status=ANSWERED keywords=parse-results.txt source=assignments.txt
+      hệ thống: intent=GET_ASSIGNMENT status=ANSWERED parsed=False top=['assignments.txt#2', 'assignments.txt#5', 'assignments.txt#3']
+      ngữ cảnh: phần I cần xuất file gì?
+      trả lời: PART I - Grammar and Parser — requirements: xây dựng grammar cho miền Course Assistant; sinh câu hợp lệ từ grammar; xây dựng parser; xuất parse tree; xử lý câu không hợp lệ; suggested_outputs: output/grammar.txt; output/samples.txt; output/parse-results.txt [Nguồn: assignments.txt#2]
+OK  [C07] (CONTEXT) Chương 11 có hỏi đáp không?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=question answering source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#11', 'schedule.txt#14', 'topics.txt#5']
+      trả lời: CHAPTER 11: KNOWLEDGE REPRESENTATION AND REASONING — keywords: knowledge representation, reasoning, frame, QA; summary: The chapter introduces knowledge representation and reasoning and applies them to simple natural-language question answering. [Nguồn: topics.txt#11]
+OK  [C08] (CONTEXT) Còn chương sau?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 12 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#12', 'topics.txt#11', 'topics.txt#5']
+      ngữ cảnh: chương 12 có hỏi đáp không?
+      trả lời: CHAPTER 12: DISCOURSE CONTEXT AND REFERENCE — summary: The chapter introduces local discourse context and discourse entities, with emphasis on reference expressions, pronouns, centering, definite descriptions, sets, ellipsis and surface anaphora. [Nguồn: topics.txt#12]
+OK  [C09] (CONTEXT) L.O.2.5 học về gì?
+      kỳ vọng: intent=GET_LO status=ANSWERED keywords=xác suất source=faq.txt
+      hệ thống: intent=GET_LO status=ANSWERED parsed=False top=['faq.txt#10', 'course_info.txt#6', 'course_info.txt#5']
+      trả lời: FAQ Q10: L.O.2.5 liên quan đến nội dung gì? — L.O.2.5 liên quan đến lý thuyết xác suất và việc giải quyết nhập; nhằng từ ở mức câu. | detailed_learning_outcomes — detailed_learning_outcomes: LO1.1 - Hiểu cấu trúc hệ thống NLP, ứng dụng và cách đánh giá hệ thống hiểu ngôn ngữ tự nhiên. LO2.1 - Kiến thức cơ sở về cú pháp tiếng Anh. LO2.2 - Kiến thức cơ bản về văn phạm và phân tích cú pháp. LO2.3 - Kiến thức về nét và văn phạm gia tố. LO2.4 - Kiến thức tạo văn phạm cho ngôn ngữ tự nhiên và phương pháp parsing. LO2.5 - Kiến thức xác suất để giải quyết nhập nhằng từ ở mức câu. LO3.1 - Kiến thức về ngôn ngữ dạng luận lý và tạo dạng luận lý đơn giản. LO3.2 - Tạo tự động diễn dịch ngữ nghĩa cho câu tự nhiên. LO3.3 - Giải quyết nhập nhằng ngữ nghĩa dựa trên tri thức và thống kê. LO3.4 - Diễn dịch ngữ nghĩa bằng quan hệ văn phạm và văn phạm ngữ nghĩa. LO4.1 - Biểu diễn tri thức, suy diễn và xây dựng hệ thống hỏi đáp đơn giản. LO4.2 - Ngữ cảnh diễn ngôn cục bộ và sự tham chiếu. [Nguồn: faq.txt#10, course_info.txt#6]
+OK  [C10] (CONTEXT) Nội dung này nằm ở chương nào?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=chapter 6 source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#6', 'topics.txt#9', 'topics.txt#7']
+      ngữ cảnh: L.O.2.5 nằm ở chương nào?
+      trả lời: CHAPTER 6: AMBIGUITY RESOLUTION - STATISTICAL METHODS — summary: Statistical methods are introduced for resolving ambiguity at sentence level. Topics include probability theory, probability estimation, part-of-speech tagging, lexical probabilities, PCFG and best-first parsing. [Nguồn: topics.txt#6]
+OK  [C11] (CONTEXT) Phần II của bài tập lớn yêu cầu gì?
+      kỳ vọng: intent=GET_ASSIGNMENT status=ANSWERED keywords=intent source=assignments.txt
+      hệ thống: intent=GET_ASSIGNMENT status=ANSWERED parsed=False top=['assignments.txt#3', 'assignments.txt#5', 'assignments.txt#2']
+      trả lời: PART II - Semantic Interpretation and QA — minimum_requirements: semantic representation; intent identification; entity extraction; query to knowledge base; answer generation; xử lý câu hỏi ngoài miền; xử lý trường hợp không tìm thấy thông tin [Nguồn: assignments.txt#3]
+OK  [C12] (CONTEXT) Còn phần III?
+      kỳ vọng: intent=GET_ASSIGNMENT status=ANSWERED keywords=discourse source=assignments.txt
+      hệ thống: intent=GET_ASSIGNMENT status=ANSWERED parsed=False top=['assignments.txt#4', 'assignments.txt#5', 'assignments.txt#3']
+      trả lời: PART III - Local Discourse Context — optional_or_extension: xử lý một số hội thoại nhiều lượt; lưu discourse entities đơn giản; xử lý tham chiếu đại từ hoặc mô tả xác định; xử lý một số trường hợp ellipsis đơn giản [Nguồn: assignments.txt#4]
+OK  [C13] (CONTEXT) Chương 3 nói về gì?
+      kỳ vọng: intent=GET_TOPIC status=ANSWERED keywords=grammar source=topics.txt
+      hệ thống: intent=GET_TOPIC status=ANSWERED parsed=False top=['topics.txt#3', 'topics.txt#5', 'topics.txt#2']
+      trả lời: CHAPTER 3: GRAMMAR AND PARSING — summary: The chapter introduces context-free grammar, sentence structure and; parsing methods. It also introduces probabilistic CFG and dependency; grammar. [Nguồn: topics.txt#3]
+OK  [C14] (CONTEXT) Chương đó học vào tuần nào?
+      kỳ vọng: intent=GET_SCHEDULE status=ANSWERED keywords=week 03 source=schedule.txt
+      hệ thống: intent=GET_SCHEDULE status=ANSWERED parsed=False top=['schedule.txt#4', 'schedule.txt#10', 'schedule.txt#3']
+      ngữ cảnh: chương 3 học vào tuần nào?
+      trả lời: WEEK 03 — topics: context-free grammar; grammar and sentence structure; top-down parsing; bottom-up chart parsing; top-down chart parsing; probabilistic context-free grammar; dependency grammar; Stanford dependencies [Nguồn: schedule.txt#4]
+
+PHÂN TÍCH LỖI (tự động)
+------------------------------------------------------------------------------
+[N07] HALLUCINATION-RISK: trả lời dù KB không có thông tin / câu ngoài miền

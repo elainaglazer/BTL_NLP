@@ -1,0 +1,18 @@
+# Câu hỏi độc lập cho Phần II (mỗi dòng một câu; dòng bắt đầu bằng # là chú thích)
+# Lấy từ sample_queries.txt chính thức + vài câu không có thông tin / ngoài phạm vi
+Môn NLP có bao nhiêu tín chỉ?
+Môn học gồm những phần nào?
+Tuần 3 học gì?
+Chương 4 học vào tuần nào?
+Chương nào nói về CFG?
+L.O.2.5 là gì?
+Bài tập lớn yêu cầu xây dựng những gì?
+Deadline bài tập lớn là khi nào?
+Có được dùng LLM/RAG không?
+Midterm bao nhiêu phút?
+Tài liệu tham khảo về statistical NLP là gì?
+Chương 11 có liên quan đến hỏi đáp không?
+Giảng viên dạy môn NLP là ai?
+Chương 13 nói về gì?
+Ai là tổng thống của Pháp?
+Hãy giải bài tập xác suất này giúp tôi.

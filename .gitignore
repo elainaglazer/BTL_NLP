@@ -1,13 +1,10 @@
 __pycache__/
-*.py[cod]
+*.pyc
+.env
 .venv/
 venv/
-.env
-.env.*
-!.env.example
 dist/
 *.zip
-*.pdf
 *.mp4
+docs/report/*.pdf
 output/trace.jsonl
-output/integration-trace.jsonl

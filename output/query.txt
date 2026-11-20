@@ -1,30 +1,32 @@
-Câu: Môn NLP có bao nhiêu tín chỉ
-Query: N/A
-
-Câu: Tuần 5 học những nội dung gì
-Query: N/A
-
-Câu: Phần CFG và Parsing nằm ở tuần nào
-Query: N/A
-
-Câu: Bài tập lớn có những yêu cầu gì
-Query: N/A
-
-Câu: Deadline của bài tập lớn là khi nào
-Query: N/A
-
-Câu: Tài liệu nào nói về CFG
-Query: N/A
-
-Câu: Bài tập lớn có được sử dụng công cụ AI không
-Query: N/A
-
-Câu: Tôi cần hoàn thành những bài tập nào
-Query: N/A
-
-Câu: Tài liệu của phần này ở đâu
-Query: N/A
-
-Câu: Thời tiết hôm nay ở Sài Gòn thế nào
-Query: N/A
-
+Môn NLP có bao nhiêu tín chỉ?
+    QUERY: Môn NLP có bao nhiêu tín chỉ? | môn nlp co3085 | course information
+Môn học gồm những phần nào?
+    QUERY: Môn học gồm những phần nào? | course information
+Tuần 3 học gì?
+    QUERY: Tuần 3 học gì? | week topics
+Chương 4 học vào tuần nào?
+    QUERY: Chương 4 học vào tuần nào? | week topics
+Chương nào nói về CFG?
+    QUERY: Chương nào nói về CFG? | chapter summary
+L.O.2.5 là gì?
+    QUERY: L.O.2.5 là gì? | learning outcomes
+Bài tập lớn yêu cầu xây dựng những gì?
+    QUERY: Bài tập lớn yêu cầu xây dựng những gì? | bài tập yêu cầu
+Deadline bài tập lớn là khi nào?
+    QUERY: Deadline bài tập lớn là khi nào? | deadline hạn nộp
+Có được dùng LLM/RAG không?
+    QUERY: Có được dùng LLM/RAG không? | sử dụng | quy định
+Midterm bao nhiêu phút?
+    QUERY: Midterm bao nhiêu phút? | course information
+Tài liệu tham khảo về statistical NLP là gì?
+    QUERY: Tài liệu tham khảo về statistical NLP là gì? | tài liệu
+Chương 11 có liên quan đến hỏi đáp không?
+    QUERY: Chương 11 có liên quan đến hỏi đáp không? | chapter summary
+Giảng viên dạy môn NLP là ai?
+    QUERY: Giảng viên dạy môn NLP là ai? | giảng viên
+Chương 13 nói về gì?
+    QUERY: Chương 13 nói về gì? | chapter summary
+Ai là tổng thống của Pháp?
+    QUERY: (không truy vấn - ngoài miền)
+Hãy giải bài tập xác suất này giúp tôi.
+    QUERY: (không truy vấn - ngoài miền)
