@@ -2,7 +2,7 @@
 import argparse
 import json
 import sys
-
+import os
 from src.components import build_pipeline
 from src.config import ensure_utf8_stdio, input_path, load_config, output_dir
 
@@ -46,13 +46,40 @@ def main(argv=None):
                 questions = [s.strip() for s in input_path("sentences.txt").read_text(encoding="utf-8-sig").splitlines()
                              if s.strip()]
                 pending = []
+                
+                # Mở sẵn 4 file để ghi
+                f_semantic = (out / "semantic.txt").open("w", encoding="utf-8")
+                f_intent = (out / "intent-entity.txt").open("w", encoding="utf-8")
+                f_query = (out / "query.txt").open("w", encoding="utf-8")
+                f_answer = (out / "answer.txt").open("w", encoding="utf-8")
+
                 with (out / "integration-trace.jsonl").open("w", encoding="utf-8") as f:
                     for question in questions:
-                        pipe.reset()  # sentences.txt contains independent questions
+                        pipe.reset()
                         turn = pipe.ask(question)
                         pending = turn.pending
-                        f.write(json.dumps(turn.to_dict(), ensure_ascii=False) + "\n")
-                print("Kiểm tra khung tích hợp xong. " + ("Chờ: " + ", ".join(pending) if pending else "Đã nối đủ module."))
+                        
+                        # Ghi jsonl gốc
+                        turn_data = turn.to_dict()
+                        f.write(json.dumps(turn_data, ensure_ascii=False) + "\n")
+                        
+                        # Bóc tách dữ liệu để ghi ra các file yêu cầu của đề
+                        parse_info = turn_data.get("parse", {})
+                        gen_info = turn_data.get("generator", {})
+                        
+                        f_semantic.write(f"Câu: {question}\nSemantic: {parse_info}\n\n")
+                        f_intent.write(f"Câu: {question}\nIntent/Entity: {parse_info}\n\n")
+                        f_query.write(f"Câu: {question}\nQuery: {gen_info.get('query', 'N/A') if gen_info else 'N/A'}\n\n")
+                        f_answer.write(f"Câu hỏi: {question}\nTrả lời: {gen_info.get('answer', 'Xin lỗi, tôi không hiểu.') if gen_info else 'N/A'}\n\n")
+                
+                # Đóng file
+                f_semantic.close()
+                f_intent.close()
+                f_query.close()
+                f_answer.close()
+
+                print("Kiểm tra khung tích hợp xong. Đã xuất các file semantic, intent, query, answer vào output/.")
+                print("Chờ: " + ", ".join(pending) if pending else "Đã nối đủ module.")
             print("Kết quả: " + str(out))
         return 0
     except (OSError, ValueError, ImportError, AttributeError) as exc:
@@ -62,3 +89,5 @@ def main(argv=None):
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+

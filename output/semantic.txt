@@ -1,0 +1,30 @@
+Câu: Môn NLP có bao nhiêu tín chỉ
+Semantic: {'sentence': 'Môn NLP có bao nhiêu tín chỉ', 'tree': '(S (Q_COURSE (COURSE_NP môn nlp) có bao nhiêu tín chỉ (OPT_QMARK)))', 'intent': 'GET_COURSE_INFO', 'entities': {'COURSE_NP': 'CO3085'}, 'semantic': 'GET_COURSE_INFO(course=CO3085)'}
+
+Câu: Tuần 5 học những nội dung gì
+Semantic: {'sentence': 'Tuần 5 học những nội dung gì', 'tree': '(S (Q_TOPIC (TIME_NP tuần 5) học những (TOPIC_WORD nội dung) gì (OPT_QMARK)))', 'intent': 'GET_TOPIC', 'entities': {'TIME_NP': 'TUẦN 5'}, 'semantic': 'GET_TOPIC(time=TUẦN 5)'}
+
+Câu: Phần CFG và Parsing nằm ở tuần nào
+Semantic: {'sentence': 'Phần CFG và Parsing nằm ở tuần nào', 'tree': '()', 'intent': 'OUT_OF_DOMAIN', 'entities': {}, 'semantic': 'OUT_OF_DOMAIN()'}
+
+Câu: Bài tập lớn có những yêu cầu gì
+Semantic: {'sentence': 'Bài tập lớn có những yêu cầu gì', 'tree': '(S (Q_ASSIGN (ASSIGN_NP bài tập lớn) có những yêu cầu gì (OPT_QMARK)))', 'intent': 'GET_ASSIGNMENT', 'entities': {'ASSIGN_NP': 'BÀI TẬP LỚN'}, 'semantic': 'GET_ASSIGNMENT(assign=BÀI TẬP LỚN)'}
+
+Câu: Deadline của bài tập lớn là khi nào
+Semantic: {'sentence': 'Deadline của bài tập lớn là khi nào', 'tree': '(S (Q_DEADLINE deadline của (ASSIGN_NP bài tập lớn) là khi nào (OPT_QMARK)))', 'intent': 'GET_DEADLINE', 'entities': {'ASSIGN_NP': 'BÀI TẬP LỚN'}, 'semantic': 'GET_DEADLINE(assign=BÀI TẬP LỚN)'}
+
+Câu: Tài liệu nào nói về CFG
+Semantic: {'sentence': 'Tài liệu nào nói về CFG', 'tree': '(S (Q_RESOURCE tài liệu nào nói về (TOPIC_NP cfg) (OPT_QMARK)))', 'intent': 'GET_RESOURCE', 'entities': {'TOPIC_NP': 'CFG'}, 'semantic': 'GET_RESOURCE(topic=CFG)'}
+
+Câu: Bài tập lớn có được sử dụng công cụ AI không
+Semantic: {'sentence': 'Bài tập lớn có được sử dụng công cụ AI không', 'tree': '(S (Q_RULE (ASSIGN_NP bài tập lớn) có được sử dụng (TOOL_NP công cụ ai) không (OPT_QMARK)))', 'intent': 'GET_RULE', 'entities': {'ASSIGN_NP': 'BÀI TẬP LỚN', 'TOOL_NP': 'AI_TOOLS'}, 'semantic': 'GET_RULE(assign=BÀI TẬP LỚN, tool=AI_TOOLS)'}
+
+Câu: Tôi cần hoàn thành những bài tập nào
+Semantic: {'sentence': 'Tôi cần hoàn thành những bài tập nào', 'tree': '(S (Q_ASSIGN tôi cần hoàn thành những bài tập nào (OPT_QMARK)))', 'intent': 'GET_ASSIGNMENT', 'entities': {}, 'semantic': 'GET_ASSIGNMENT()'}
+
+Câu: Tài liệu của phần này ở đâu
+Semantic: {'sentence': 'Tài liệu của phần này ở đâu', 'tree': '(S (Q_CONTEXT tài liệu của (REF_NP phần này) ở đâu (OPT_QMARK)))', 'intent': 'LOCAL_CONTEXT', 'entities': {'REF_NP': 'PHẦN NÀY'}, 'semantic': 'LOCAL_CONTEXT(ref=PHẦN NÀY)'}
+
+Câu: Thời tiết hôm nay ở Sài Gòn thế nào
+Semantic: {'sentence': 'Thời tiết hôm nay ở Sài Gòn thế nào', 'tree': '()', 'intent': 'OUT_OF_DOMAIN', 'entities': {}, 'semantic': 'OUT_OF_DOMAIN()'}
+

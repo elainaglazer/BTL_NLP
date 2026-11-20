@@ -1,0 +1,5 @@
+=== BÁO CÁO ĐÁNH GIÁ ===
+- Tổng số câu kiểm thử: 4
+- Số lượng đúng: 0
+- Độ chính xác (Accuracy): 0.00%
+

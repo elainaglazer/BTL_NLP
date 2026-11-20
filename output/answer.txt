@@ -1,0 +1,30 @@
+Câu hỏi: Môn NLP có bao nhiêu tín chỉ
+Trả lời: N/A
+
+Câu hỏi: Tuần 5 học những nội dung gì
+Trả lời: N/A
+
+Câu hỏi: Phần CFG và Parsing nằm ở tuần nào
+Trả lời: N/A
+
+Câu hỏi: Bài tập lớn có những yêu cầu gì
+Trả lời: N/A
+
+Câu hỏi: Deadline của bài tập lớn là khi nào
+Trả lời: N/A
+
+Câu hỏi: Tài liệu nào nói về CFG
+Trả lời: N/A
+
+Câu hỏi: Bài tập lớn có được sử dụng công cụ AI không
+Trả lời: N/A
+
+Câu hỏi: Tôi cần hoàn thành những bài tập nào
+Trả lời: N/A
+
+Câu hỏi: Tài liệu của phần này ở đâu
+Trả lời: N/A
+
+Câu hỏi: Thời tiết hôm nay ở Sài Gòn thế nào
+Trả lời: N/A
+
