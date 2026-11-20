@@ -1,7 +1,7 @@
 # Bài tập lớn NLP - Hệ thống Course Assistant
 
 ## 1. Thành viên nhóm
-- MSSV1 - Nguyễn Văn A (Nhóm trưởng)
+- 2311615 - Nguyễn Đỗ Đăng Khoa (Nhóm trưởng)
 - MSSV2 - Trần Thị B
 - MSSV3 - Lê Văn C
 - MSSV4 - Khoa...
